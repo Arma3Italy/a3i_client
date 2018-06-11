@@ -1,0 +1,26 @@
+{
+  "name": "arma3italyweb",
+  "version": "1.0.0",
+  "description": "Sito per la community Arma3Italy",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "dev": "nodemon index.js",
+    "sl": "nodemon src/serverList.js"
+  },
+  "keywords": [
+    "site",
+    "web",
+    "arma",
+    "ita",
+    "arma3italy"
+  ],
+  "author": "Kaj Oskar Rusilowski",
+  "license": "MIT",
+  "devDependencies": {
+    "nodemon": "^1.17.5"
+  },
+  "dependencies": {
+    "express": "^4.16.3"
+  }
+}
