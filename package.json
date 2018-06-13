@@ -5,8 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "node index.js",
-    "dev": "nodemon index.js",
-    "sl": "nodemon src/serverList.js"
+    "dev": "nodemon index.js"
   },
   "keywords": [
     "site",
@@ -21,6 +20,7 @@
     "nodemon": "^1.17.5"
   },
   "dependencies": {
-    "express": "^4.16.3"
+    "express": "^4.16.3",
+    "pug": "^2.0.3"
   }
 }

@@ -1,1 +1,3 @@
-console.log('ciao');
+const web = require('./src/app.js');
+
+web();
