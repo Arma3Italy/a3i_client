@@ -20,7 +20,7 @@ module.exports = function () {
     });
 
     // Routs
-    app.use('/api/serverList', require('../api/serverList/apiServerList'));
+    app.use('/api/serverList', require('../api/serverList/serverList'));
     app.use('/api/login', require('../api/auth/login'));
     app.use('/api/register', require('../api/auth/register'));
 
