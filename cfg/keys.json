@@ -1,3 +1,4 @@
 {
-    "steamTOKEN": "DB5703735A7F619DCA70D93000B9ABC4"
+    "steamTOKEN": "DB5703735A7F619DCA70D93000B9ABC4",
+    "mongodb": "mongodb://admin:admin123@ds261660.mlab.com:61660/arma3italy"
 }
