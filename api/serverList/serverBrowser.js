@@ -77,9 +77,8 @@ function initFileServerList( rout, data ) {
 function checkFile( rout, file, dataServer ) {
     fs.readdir( rout, (err, data) => {
         if (err) {
-            fs.mkdir( rout, (mkerr, mkdata) => {
-                initFileServerList( path.resolve( rout, file ), dataServer )
-            });
+            fs.mkdirSync( rout );
+            initFileServerList( path.resolve( rout, file ), dataServer );
         } else {
             fs.readFile(path.resolve( rout, file ), 'utf8', async (rferr, rfdata) => {
                 if (rferr) { initFileServerList( path.resolve( rout, file ), dataServer ) }
@@ -90,6 +89,13 @@ function checkFile( rout, file, dataServer ) {
 };
 
 
-fetchAPI(url, (err, res) => {
-    if (!err) checkFile(pathDB, file, serverList(checkObject('o', res.response.servers)))
-});
+function serverListUpdater( dev = false ) {
+    fetchAPI(url, (err, res) => {
+        if (!err) checkFile(pathDB, file, serverList(checkObject('o', res.response.servers)));
+    });
+    if (dev) {
+        console.log('-> serverListUpdater runned');
+    };
+};
+
+module.exports = { serverListUpdater };
