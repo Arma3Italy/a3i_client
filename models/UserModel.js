@@ -7,11 +7,7 @@ const UserSchema = new Schema({
         type: String,
         require: true
     },
-    email: {
-        type: String,
-        require: true
-    },
-    password: {
+    steamid: {
         type: String,
         require: true
     },
@@ -19,13 +15,21 @@ const UserSchema = new Schema({
         type: String,
         require: true
     },
+    email: {
+        type: String,
+        require: false
+    },
     servers: {
         type: Array,
         require: false
     },
+    hasArma: {
+        type: Boolean,
+        require: false
+    },
     registerDate: {
         type: Date,
-        require: Date.now
+        default: Date.now
     }
 });
 
