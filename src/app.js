@@ -30,8 +30,11 @@ module.exports = function () {
 
     // Main Rounts
     app.get('/', (req, res) => {
-        // res.send('hey');
-        res.json(req.user);
+        res.send('index');
+    });
+
+    app.get('/session', (req, res) => {
+        res.send(req.session);
     });
 
     // Routs

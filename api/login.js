@@ -1,10 +1,11 @@
 const express = require('express');
 const route = express.Router();
-
 const steamLogin = require('steam-login');
+const { initUserDB } = require('../src/dbfnc');
 
-// const mongoose = require('mongoose');
-const User = require('../models/UserModel');
+route.get('/', (req, res) => {
+    res.send();
+});
 
 /**
  *   @route    GET api/login/auth
@@ -19,6 +20,10 @@ route.get('/auth', steamLogin.authenticate());
  *   @access   Public
  */
 route.get('/verify', steamLogin.verify(), function(req, res) {
+
+    initUserDB(req.session.steamUser);
+
+    /*
 	User.findOne({ steamid: req.user.steamid }).then(user => {
         let newUser = new User();
         if (!user) {
@@ -38,6 +43,10 @@ route.get('/verify', steamLogin.verify(), function(req, res) {
             })
         }).on('error', (e) => { console.error(e) }).end();
     });
+    */
+
+
+
 });
 
 /**

@@ -3,7 +3,8 @@ const cfg = require('../cfg/cfg.json');
 const fs = require('fs');
 const path = require('path');
 
-const axios = require('axios');
+const { fetchAPI } = require('./fnc');
+
 const url = `https://api.steampowered.com/IGameServersService/GetServerList/v1/?key=${keys.steamTOKEN}&format=json${cfg.serverListCFG.filters == '' ? '' : '&filter='+cfg.serverListCFG.filters}${cfg.serverListCFG.limit == '' ? '' : '&limit='+cfg.serverListCFG.limit}`;
 
 const pathDB = path.resolve(__dirname, '..', 'db');
@@ -56,12 +57,6 @@ function serverList( servers ) {
     const serverList = serversFiltered.map(parseServer);
 
     return ({ serverUpdate: Date.now(), serverCount, serverList });
-};
-
-function fetchAPI ( url, cb ) {
-    axios.get(url)
-        .then(response => cb(undefined, response.data))
-        .catch(err => cb(err, {}));
 };
 
 function checkServer( rout, olddata, newdata ) {
