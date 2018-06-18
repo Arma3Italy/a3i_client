@@ -1,13 +1,4 @@
-
-
 const web = require('./src/app.js')();
 
-const serverUpdater = require('./api/serverList/serverBrowser.js').serverListUpdater;
-setInterval(serverUpdater, 2000);
-
-
-
-
-
-
-
+const serverUpdater = require('./src/serverBrowser.js').serverListUpdater;
+setInterval(serverUpdater, 9000);

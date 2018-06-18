@@ -1,15 +1,25 @@
-const keys = require('../../cfg/keys.json');
-const cfg = require('../../cfg/cfg.json');
+const keys = require('../cfg/keys.json');
+const cfg = require('../cfg/cfg.json');
 const fs = require('fs');
 const path = require('path');
 
 const axios = require('axios');
 const url = `https://api.steampowered.com/IGameServersService/GetServerList/v1/?key=${keys.steamTOKEN}&format=json${cfg.serverListCFG.filters == '' ? '' : '&filter='+cfg.serverListCFG.filters}${cfg.serverListCFG.limit == '' ? '' : '&limit='+cfg.serverListCFG.limit}`;
 
-const pathDB = path.resolve(__dirname, '..', '..', 'db');
+const pathDB = path.resolve(__dirname, '..', 'db');
 const file = 'serverList.json';
 
+console.log('-> serverBrowser started');
 
+/**
+ * With type = 'o' -> Check if data is an object and returns it. if not, convert it to object and returns it.
+ * With type = 's' -> Check if data is an string and returns it. if not, convert it to string and returns it.
+ * 
+ * @param {String} type o: object - s: string
+ * @param {String|Object} data string or object to trasform
+ * @example checkObject('s', { name: "tod", age: 23, hobby: "tennis" }) -> '{"name":"tod","age": 23,"hobby": "tennis"}'
+ * @example checkobject('o', '{"name":"tod","age": 23,"hobby": "tennis"}') -> { nome: 'tod', age: 23, hobby: 'tennis' }
+ */
 function checkObject( type, data ) {
     if (type == 'o') return (typeof data == 'object' ? data : JSON.parse(data));
     if (type == 's') return (typeof data == 'string' ? data : JSON.stringify(data));

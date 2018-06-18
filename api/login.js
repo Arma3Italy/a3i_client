@@ -4,14 +4,14 @@ const route = express.Router();
 const steamLogin = require('steam-login');
 
 // const mongoose = require('mongoose');
-const User = require('../../models/UserModel');
+const User = require('../models/UserModel');
 
 /**
  *   @route    GET api/login/auth
  *   @desc     Access point to login with steam
  *   @access   Public
  */
-route.get('/auth', steamLogin.authenticate(), function(req, res) {res.redirect('/');});
+route.get('/auth', steamLogin.authenticate());
 
 /**
  *   @route    GET api/login/verify
@@ -26,7 +26,7 @@ route.get('/verify', steamLogin.verify(), function(req, res) {
             newUser.steamid = req.user.steamid;
             newUser.avatar = req.user.avatar.large;
         };
-        require('https').request(`https://api.steampowered.com/IPlayerService/GetOwnedGames/v0001/?key=${require('../../cfg/keys.json').steamTOKEN}&steamid=${req.user.steamid}&format=json`, respon => {
+        require('https').request(`https://api.steampowered.com/IPlayerService/GetOwnedGames/v0001/?key=${require('../cfg/keys.json').steamTOKEN}&steamid=${req.user.steamid}&format=json`, respon => {
             let op = '';
             respon.on('data', data => op += data);
             respon.on('end', () => {
@@ -51,4 +51,4 @@ route.get('/logout', steamLogin.enforceLogin('/'), function(req, res) {
 });
 
 
-module.exports = route;
+module.exports = { route };
