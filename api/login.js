@@ -1,7 +1,7 @@
 const express = require('express');
 const route = express.Router();
 const steamLogin = require('steam-login');
-const { initUserDB } = require('../src/dbfnc');
+const { initUserDB, deleteUserDB } = require('../src/dbfnc');
 
 route.get('/', (req, res) => {
     res.send();
@@ -22,31 +22,23 @@ route.get('/auth', steamLogin.authenticate());
 route.get('/verify', steamLogin.verify(), function(req, res) {
 
     initUserDB(req.session.steamUser);
+	res.redirect('/');
 
-    /*
-	User.findOne({ steamid: req.user.steamid }).then(user => {
-        let newUser = new User();
-        if (!user) {
-            newUser.user = req.user.username;
-            newUser.steamid = req.user.steamid;
-            newUser.avatar = req.user.avatar.large;
-        };
-        require('https').request(`https://api.steampowered.com/IPlayerService/GetOwnedGames/v0001/?key=${require('../cfg/keys.json').steamTOKEN}&steamid=${req.user.steamid}&format=json`, respon => {
-            let op = '';
-            respon.on('data', data => op += data);
-            respon.on('end', () => {
-                op = JSON.parse(op).response.games.find(it => it.appid == 107410) ? true : false;
-                newUser.hasArma = op;
-                // return res.json(newUser);
-                newUser.save();
-                return res.redirect('/');
-            })
-        }).on('error', (e) => { console.error(e) }).end();
-    });
-    */
+});
 
-
-
+/**
+ *   @route    GET api/login/delete
+ *   @desc     
+ *   @access   Public
+ */
+route.get('/delete', function(req, res) {
+    if (req.session.steamUser) {
+        deleteUserDB(req.session.steamUser, (err) => {
+            res.redirect('/api/login/logout');
+        });
+    } else {
+        res.redirect('/api/login/auth');
+    }
 });
 
 /**

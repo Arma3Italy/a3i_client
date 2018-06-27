@@ -17,15 +17,18 @@ const UserSchema = new Schema({
     },
     email: {
         type: String,
-        require: false
+        require: false,
+        default: ""
     },
     servers: {
         type: Array,
-        require: false
+        require: false,
+        default: []
     },
     hasArma: {
         type: Boolean,
-        require: false
+        require: false,
+        default: false
     },
     registerDate: {
         type: Date,

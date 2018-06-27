@@ -9,30 +9,46 @@ function steamApiUserGameList( steamid ) {
     return `https://api.steampowered.com/IPlayerService/GetOwnedGames/v0001/?key=${cfg.steamTOKEN}&steamid=${steamid}&format=json`;
 };
 
-function findGame( gameID, userID ) {
+function initUserDB( userData ) {
+    User.findOne({ steamid: userData.steamid }).then(user => {
 
-    return fetchAPI(steamApiUserGameList( userID ), (err, responde) => {
+        let userDB = user ? user : newUserDB( new User(), userData );
+
+        fatchGame( userDB, userData, ( cbUserDB ) => {
+            cbUserDB.save();
+        });
+
+    });
+};
+
+function newUserDB( user, userInfo ) {
+
+    user.user = userInfo.username;
+    user.steamid = userInfo.steamid;
+    user.avatar = userInfo.avatar.large;
+
+    return user;
+
+};
+
+function fatchGame( userDB, userData, cb ) {
+
+    fetchAPI(steamApiUserGameList( userData.steamid ), (err, responde) => {
         if (!err) {
-            console.log( responde.response.games.map(x => x.appid).includes( gameID ) );
+            userDB.hasArma = responde.response.games.map(x => x.appid).includes( 107410 );
+            cb(userDB); 
         };
     });
 
 };
 
-function initUserDB( userData ) {
-    User.findOne({ steamid: userData.steamid }).then(user => {
-
-        findGame( 107410, userData.steamid )
-
-    });
+function updateUserDB( newData ) {
 };
 
-function updateUserDB(newData) {
-    console.log('updateUserDB ' + newData);
+function deleteUserDB( userData, cb ) {
+    User.findOneAndRemove({ steamid: userData.steamid }, (err) => {
+        if (!err) cb();
+    })
 };
 
-function deleteUserDB(steamID) {
-    console.log('deleteUserDB ' + steamID);
-};
-
-module.exports = { findGame, initUserDB };
+module.exports = { initUserDB, deleteUserDB };
