@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 
 class ServerListBUTTON extends Component {
-    constructor(input) {
-        super();
+    constructor(props) {
+        super(props);
         this.state = {
-            servers: input.servers
+            servers: props.servers.serverList
         };
     };
 

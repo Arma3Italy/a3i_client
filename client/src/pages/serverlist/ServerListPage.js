@@ -12,83 +12,49 @@ class ServerListPage extends Component {
 
         this.state = {
             serverOverView: 'table', //  table - button
-            servers: [ {
-                rank: 1,
-                nome: '[ITA] LessLife | ts3: ts.lesslife.it',
-                ip: '51.38.114.224:2302',
-                img: 'img/bannerServers/SIGBanner.jpg',
-                map: 'Altis',
-                players: 47,
-                maxPlayers: 214
+            servers: { 
+                serverCount: 47,
+                serverList: [
+                    { rank: 1, nome: '[ITA] LessLife | ts3: ts.lesslife.it', ip: '51.38.114.224:2302', img: 'img/bannerServers/SIGBanner.jpg', map: 'Altis', players: 47, maxPlayers: 214 },
+                    { rank: 143, nome: '[ITA] CosaNostra | ts3: ts.cosanostra.it', ip: '78.236.64.4:2302', img: 'img/bannerServers/qcs.jpg', map: 'Altis', players: 95, maxPlayers: 120 },
+                    { rank: 2, nome: '[ITA] AltisLifeItaliaReloaded | ts3: ts.alir.it', ip: '34.35.563.24:2302', img: 'img/bannerServers/alir.jpg', map: 'Altis', players: 12, maxPlayers: 142 },
+                    { rank: 72, nome: '[ITA] FutureLife | ts3: ts.futurelife.it', ip: '35.3.5.25:2302', img: 'img/bannerServers/lossantosFuture.jpg', map: 'Altis', players: 2, maxPlayers: 60 }
+                ],
+                serverUpdate: 1531093617131
             },
-            {
-                rank: 143,
-                nome: '[ITA] CosaNostra | ts3: ts.cosanostra.it',
-                ip: '78.236.64.4:2302',
-                img: 'img/bannerServers/qcs.jpg',
-                map: 'Altis',
-                players: 95,
-                maxPlayers: 120
-            },
-            {
-                rank: 2,
-                nome: '[ITA] AltisLifeItaliaReloaded | ts3: ts.alir.it',
-                ip: '34.35.563.24:2302',
-                img: 'img/bannerServers/alir.jpg',
-                map: 'Altis',
-                players: 12,
-                maxPlayers: 142
-            },
-            {
-                rank: 72,
-                nome: '[ITA] FutureLife | ts3: ts.futurelife.it',
-                ip: '35.3.5.25:2302',
-                img: 'img/bannerServers/lossantosFuture.jpg',
-                map: 'Altis',
-                players: 2,
-                maxPlayers: 60
-            } ],
             filter: ""
         };
-        this.updateFilter = this.updateFilter.bind(this);
+
+
+        // https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API/Using_Fetch
+        fetch('http://localhost:8888/api/serverlist', {
+            method: 'get'
+        }).then(res => res.json()).then(data => this.updateServerList(data));
+
+        // this.updateServerList = this.updateServerList.bind(this);
     };
 
-    // componentWillMount() {
-
-    //     fetch('http://localhost:8888/api/serverlist')
-    //     .then(data => data.json())
-    //     .then(data => this.updateServers(data));
-
-    // };
+    updateServerList(server) {
+        this.setState({
+            servers: server
+        });
+        console.log(this.state);
+    };
 
     renderServers(overviewType) {
-        if (overviewType === 'table') {
+        if (this.state.serverOverView === 'table') {
             return <ServerListTABLE servers={this.state.servers} />;
-        } else if (overviewType === 'button') {
+        } else if (this.state.serverOverView === 'button') {
             return <ServerListBUTTON servers={this.state.servers} />;
         };
-        return <h1 style={{ backgroundColor: 'red', padding: '10px' }}>Error -> overviewType</h1>
+        return <h1 style={{ backgroundColor: 'red', padding: '10px' }}>Error -> {this.state.serverOverView}</h1>
     };
 
     changeOverview(type) {
-        this.setState({
-            serverOverView: type
-        });
-        console.log(this.state)
-    };
-
-    // updateServers(data) {
-    //     this.setState({
-    //         servers: data
-    //     })
-    // };
-
-    updateFilter(event) {
-        this.setState({ [event.target.name]: event.target.value })
+        this.setState({ serverOverView: type });
     };
 
     render() {
-        console.log(this.state)
         return (
             <div className="ServerListPage">
                 <Header />
@@ -115,7 +81,7 @@ class ServerListPage extends Component {
                         </form>
                     </div>
 
-                    <div className="servers text-light">{this.renderServers(this.state.serverOverView)}</div>
+                    <div className="servers text-light">{this.renderServers()}</div>
 
                 </main>
                 <Footer />
