@@ -41,8 +41,8 @@ function parseServer( server ) {
     server = checkObject('o', server)
     server.updateTime = Date.now();
     server.serverClaim = []; // steam ID del proprietario
-    server.img = ""; // banner server
-    server.desc = ""; // descrizione server
+    server.img = "img/bannerServers/banner_test.jpg"; // banner server
+    server.desc = " PER LA DESCRIZIONE CONTATTARE XEDOM"; // descrizione server
     server.rank = [
         { 
             time: {
@@ -158,6 +158,7 @@ function serverListUpdater( devInput = false ) {
     axios.get(url)
         .then(res => checkFile(pathDB, fileDB, checkObject('o', res.data.response.servers)))
         .catch(e => console.log(`-> ERROR to Load Servers { ${e} }`))
+    console.log(`-> serverBrowser updated`);
 };
 
 module.exports = { serverListUpdater };

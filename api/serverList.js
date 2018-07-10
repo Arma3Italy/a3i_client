@@ -3,7 +3,15 @@ const route = express.Router();
 const fs = require('fs');
 const path = require('path');
 
-const serverList = fs.readFileSync(path.resolve('db', 'serverList.json'), 'utf8');
+function updaterServerList() {
+    return fs.readFileSync(path.resolve('db', 'serverList.json'), 'utf8');
+};
+
+let serverList = updaterServerList();
+
+setInterval(()=>{
+    serverList = updaterServerList();
+},5000);
 
 
 route.use(function (req, res, next) {

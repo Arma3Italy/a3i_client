@@ -10,15 +10,15 @@ class ServerListBUTTON extends Component {
 
     listItem() {
         const sl = this.state.servers.map(i => (
-            <div className="col-12 col-md-6 col-lg-4" key={String(i.ip)}>
+            <div className="col-12 col-md-6 col-lg-4" key={String(i.addr)}>
                 <div className="card serverBlock mb-4 bg-dark">
                     <a rel="noopener noreferrer" href="/"><img src={i.img} alt="imgServerBanner" className="card-img-top" /></a>
                     <div className="card-body">
-                        <h5 className="card-title"> {i.nome} </h5>
+                        <h5 className="card-title"> {i.name} </h5>
                         <p className="m-0 mappa">Mappa: <span className="text-warning"> {i.map} </span></p>
-                        <p className="m-0 players">Players: <span className="text-warning"> {i.players}/{i.maxPlayers} </span></p>
+                        <p className="m-0 players">Players: <span className="text-warning"> {i.players}/{i.max_players} </span></p>
                     </div>
-                    <div className="card-footer text-muted">IP: <span className="text-warning"> {i.ip} </span> <a rel="noopener noreferrer" href="/"> <i className="fas fa-sign-in-alt"></i> </a> </div>
+                    <div className="card-footer text-muted">IP: <span className="text-warning"> {i.addr.split(':')[0]}:{i.gameport} </span> <a rel="noopener noreferrer" href="/"> <i className="fas fa-sign-in-alt"></i> </a> </div>
                 </div>
             </div>
         ));

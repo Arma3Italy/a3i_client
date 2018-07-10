@@ -15,33 +15,25 @@ class ServerListPage extends Component {
             servers: { 
                 serverCount: 47,
                 serverList: [
-                    { rank: 1, nome: '[ITA] LessLife | ts3: ts.lesslife.it', ip: '51.38.114.224:2302', img: 'img/bannerServers/SIGBanner.jpg', map: 'Altis', players: 47, maxPlayers: 214 },
-                    { rank: 143, nome: '[ITA] CosaNostra | ts3: ts.cosanostra.it', ip: '78.236.64.4:2302', img: 'img/bannerServers/qcs.jpg', map: 'Altis', players: 95, maxPlayers: 120 },
-                    { rank: 2, nome: '[ITA] AltisLifeItaliaReloaded | ts3: ts.alir.it', ip: '34.35.563.24:2302', img: 'img/bannerServers/alir.jpg', map: 'Altis', players: 12, maxPlayers: 142 },
-                    { rank: 72, nome: '[ITA] FutureLife | ts3: ts.futurelife.it', ip: '35.3.5.25:2302', img: 'img/bannerServers/lossantosFuture.jpg', map: 'Altis', players: 2, maxPlayers: 60 }
+                    { name: '[ITA] LessLife | ts3: ts.lesslife.it', addr: '51.38.114.224:2302', img: 'img/bannerServers/SIGBanner.jpg', map: 'Altis', players: 47, max_players: 214, rank: [ { like: [ 2, 23, 4]} ]},
+                    { name: '[ITA] CosaNostra | ts3: ts.cosanostra.it', addr: '78.236.64.4:2302', img: 'img/bannerServers/qcs.jpg', map: 'Altis', players: 95, max_players: 120, rank: [ { like: [ 2, 23, 4]} ]},
+                    { name: '[ITA] AltisLifeItaliaReloaded | ts3: ts.alir.it', addr: '34.35.563.24:2302', img: 'img/bannerServers/alir.jpg', map: 'Altis', players: 12, max_players: 142, rank: [ { like: [ 2, 23, 4]} ]},
+                    { name: '[ITA] FutureLife | ts3: ts.futurelife.it', addr: '35.3.5.25:2302', img: 'img/bannerServers/lossantosFuture.jpg', map: 'Altis', players: 2, max_players: 60, rank: [ { like: [ 2, 23, 4]} ]}
                 ],
                 serverUpdate: 1531093617131
             },
             filter: ""
         };
 
-
-        // https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API/Using_Fetch
-        fetch('http://localhost:8888/api/serverlist', {
-            method: 'get'
-        }).then(res => res.json()).then(data => this.updateServerList(data));
-
-        // this.updateServerList = this.updateServerList.bind(this);
     };
 
     updateServerList(server) {
         this.setState({
             servers: server
         });
-        console.log(this.state);
     };
 
-    renderServers(overviewType) {
+    renderServers() {
         if (this.state.serverOverView === 'table') {
             return <ServerListTABLE servers={this.state.servers} />;
         } else if (this.state.serverOverView === 'button') {
@@ -52,6 +44,12 @@ class ServerListPage extends Component {
 
     changeOverview(type) {
         this.setState({ serverOverView: type });
+    };
+
+    componentWillMount() {
+        fetch('http://localhost:8888/api/serverlist', {
+            method: 'get'
+        }).then(res => res.json()).then(data => this.updateServerList(data));
     };
 
     render() {

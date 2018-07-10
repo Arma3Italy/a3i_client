@@ -10,12 +10,12 @@ class ServerListTABLE extends Component {
 
     listItem() {
         const sl = this.state.servers.map(i => (
-            <div className="ST_body row bg-light text-dark p-2 border-bottom" key={String(i.ip)}>
-                <div className="col-lg-1 d-none d-lg-block text-center">{i.rank}</div>
-                <div className="col-6 col-lg-4 text-wrap">{i.nome}</div>
-                <div className="col-6 col-lg-3">{i.ip} <a rel="noopener noreferrer" href="/" className="text-warning"><i className="fas fa-copy"></i></a></div>
+            <div className="ST_body row bg-light text-dark p-2 border-bottom" key={String(i.addr)}>
+                <div className="col-lg-1 d-none d-lg-block text-center">{i.rank[0].like.length}</div>
+                <div className="col-6 col-lg-4 text-wrap">{i.name}</div>
+                <div className="col-6 col-lg-3">{i.addr.split(':')[0]}:{i.gameport} <a rel="noopener noreferrer" href="/" className="text-warning"><i className="fas fa-copy"></i></a></div>
                 <div className="col-lg-2 d-none d-lg-block text-center">{i.map}</div>
-                <div className="col-lg-1 d-none d-lg-block text-center">{i.players}/{i.maxPlayers}</div>
+                <div className="col-lg-1 d-none d-lg-block text-center">{i.players}/{i.max_players}</div>
                 <div className="col-lg-1 d-none d-lg-block text-center"><a rel="noopener noreferrer" href="/"><i className="fas fa-sign-in-alt"></i></a></div>
             </div>
         ));
