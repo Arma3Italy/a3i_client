@@ -8,12 +8,17 @@ class ServerListTABLE extends Component {
         };
     };
 
+    serverStatusChecker( server ) {
+        const color = server.status === true ? " text-success": " text-danger";
+        return (<i class={"fas fa-circle" + color}></i>);
+    };
+
     listItem() {
         const sl = this.state.servers.map(i => (
             <div className="ST_body row bg-light text-dark p-2 border-bottom" key={String(i.addr)}>
                 <div className="col-lg-1 d-none d-lg-block text-center">{i.rank[0].like.length}</div>
-                <div className="col-6 col-lg-4 text-wrap">{i.name}</div>
-                <div className="col-6 col-lg-3">{i.addr.split(':')[0]}:{i.gameport} <a rel="noopener noreferrer" href="/" className="text-warning"><i className="fas fa-copy"></i></a></div>
+                <div className="col-6 col-lg-4 text-wrap">{this.serverStatusChecker(i)} {i.name}</div>
+                <div className="col-6 col-lg-3"><a rel="noopener noreferrer" href="/" className="text-warning"><i className="fas fa-copy"></i></a> {i.addr.split(':')[0]}:{i.gameport}</div>
                 <div className="col-lg-2 d-none d-lg-block text-center">{i.map}</div>
                 <div className="col-lg-1 d-none d-lg-block text-center">{i.players}/{i.max_players}</div>
                 <div className="col-lg-1 d-none d-lg-block text-center"><a rel="noopener noreferrer" href="/"><i className="fas fa-sign-in-alt"></i></a></div>

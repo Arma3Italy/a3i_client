@@ -11,7 +11,7 @@ const fileDB = 'serverList.json';
 
 let dev = false;
 
-console.log('-> serverBrowser started');
+console.log('-> serverBrowser loaded');
 
 function checkObject( type, data ) {
     if (type == 'o') return (typeof data == 'object' ? data : JSON.parse(data));

@@ -5,6 +5,7 @@ import ServerListTABLE from './ServerListTABLE';
 import ServerListBUTTON from './ServerListBUTTON';
 import BG from '../BG';
 import '../../bootstrap.min.css';
+import './ServerListCSS.css';
 
 class ServerListPage extends Component {
     constructor() {
