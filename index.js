@@ -1,4 +1,8 @@
-const web = require('./src/app.js')();
-
 const serverUpdater = require('./src/serverBrowser.js').serverListUpdater;
-setInterval(serverUpdater, 9000, true);
+const serverUpdateTime = require('./cfg/cfg.json').serverListCFG.updateTime * (1000*60);
+
+setInterval(serverUpdater, serverUpdateTime);
+
+setTimeout(() => {
+    const web = require('./src/app.js')();
+}, 2000);
