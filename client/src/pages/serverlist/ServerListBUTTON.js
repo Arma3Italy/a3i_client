@@ -6,15 +6,16 @@ class ServerListBUTTON extends Component {
         this.state = {
             servers: props.servers.serverList
         };
+        console.log('RENDER BUTTON')
     };
 
     serverStatusChecker( server ) {
         const color = server.status === true ? " text-success": " text-danger";
-        return (<i class={"fas fa-circle" + color}></i>);
+        return (<i className={"fas fa-circle" + color}></i>);
     };
 
-    listItem() {
-        const sl = this.state.servers.map(i => (
+    listItem(servers) {
+        const sl = servers.map(i => (
             <div className="col-12 col-md-6 col-lg-4" key={String(i.addr)}>
                 <div className="card serverBlock mb-4 bg-dark">
                     <a rel="noopener noreferrer" href="/"><img src={i.img} alt="imgServerBanner" className="card-img-top" /></a>
@@ -23,7 +24,7 @@ class ServerListBUTTON extends Component {
                         <p className="m-0 mappa">Mappa: <span className="text-warning"> {i.map} </span></p>
                         <p className="m-0 players">Players: <span className="text-warning"> {i.players}/{i.max_players} </span></p>
                     </div>
-                    <div className="card-footer text-muted">IP: <span className="text-warning"> {i.addr.split(':')[0]}:{i.gameport} </span><a rel="noopener noreferrer" href="/" className="text-warning"><i className="fas fa-copy"></i></a> <a rel="noopener noreferrer" class="float-right" href="/"> <i className="fas fa-sign-in-alt"></i> </a> </div>
+                    <div className="card-footer text-muted">IP: <span className="text-warning"> {i.addr.split(':')[0]}:{i.gameport} </span><a rel="noopener noreferrer" href="/" className="text-warning"><i className="fas fa-copy"></i></a> <a rel="noopener noreferrer" className="float-right" href="/"> <i className="fas fa-sign-in-alt"></i> </a> </div>
                 </div>
             </div>
         ));
@@ -34,7 +35,7 @@ class ServerListBUTTON extends Component {
     render() {
         return (
             <div className="serverBOX row">
-                { this.listItem() }
+                { this.listItem(this.state.servers) }
             </div>
         );
     };

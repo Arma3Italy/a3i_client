@@ -6,11 +6,12 @@ class ServerListTABLE extends Component {
         this.state = {
             servers: props.servers.serverList
         };
+        console.log('RENDER TABLE')
     };
 
     serverStatusChecker( server ) {
         const color = server.status === true ? " text-success": " text-danger";
-        return (<i class={"fas fa-circle" + color}></i>);
+        return (<i className={"fas fa-circle" + color}></i>);
     };
 
     listItem() {
