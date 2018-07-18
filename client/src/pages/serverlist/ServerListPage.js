@@ -7,13 +7,14 @@ import BG from '../BG';
 import '../../bootstrap.min.css';
 
 class ServerListPage extends Component {
-    constructor() {
-        super();
+    constructor(props) {
+        super(props);
 
-        
+        let view = localStorage.getItem('A3I_overView') === null ? 'table' : localStorage.getItem('A3I_overView');
+        localStorage.setItem('A3I_overView', view);
 
         this.state = {
-            serverOverView: 'table', //  table - button
+            serverOverView: view, //  table - button
             servers: { 
                 serverCount: 0,
                 serverList: [
@@ -39,6 +40,7 @@ class ServerListPage extends Component {
 
     changeOverview(type) {
         this.setState({ serverOverView: type });
+        localStorage.setItem('A3I_overView', type);
     };
 
     componentDidMount() {
@@ -48,9 +50,6 @@ class ServerListPage extends Component {
     };
 
     render() {
-        
-        
-
         return (
             <div className="ServerListPage">
                 <Header />

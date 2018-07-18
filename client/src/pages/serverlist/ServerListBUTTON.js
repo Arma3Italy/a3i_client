@@ -6,7 +6,6 @@ class ServerListBUTTON extends Component {
         this.state = {
             servers: props.servers.serverList
         };
-        console.log('RENDER BUTTON')
     };
 
     serverStatusChecker( server ) {

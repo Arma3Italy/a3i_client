@@ -3,9 +3,6 @@ import React, { Component } from 'react';
 class ServerListTABLE extends Component {
     constructor(props) {
         super(props);
-
-        console.log(props)
-
         this.state = {
             servers: props.servers.serverList
         };
