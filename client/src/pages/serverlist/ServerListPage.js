@@ -5,23 +5,19 @@ import ServerListTABLE from './ServerListTABLE';
 import ServerListBUTTON from './ServerListBUTTON';
 import BG from '../BG';
 import '../../bootstrap.min.css';
-import './ServerListCSS.css';
 
 class ServerListPage extends Component {
     constructor() {
         super();
 
-        console.log('constructor')
+        
 
         this.state = {
             serverOverView: 'table', //  table - button
             servers: { 
                 serverCount: 0,
                 serverList: [
-                    { name: '[ITA] LessLife | ts3: ts.lesslife.it', addr: '51.38.114.224:2302', img: 'img/bannerServers/SIGBanner.jpg', map: 'Altis', players: 47, max_players: 214, rank: [ { like: [ 2, 23, 4]} ]},
-                    { name: '[ITA] CosaNostra | ts3: ts.cosanostra.it', addr: '78.236.64.4:2302', img: 'img/bannerServers/qcs.jpg', map: 'Altis', players: 95, max_players: 120, rank: [ { like: [ 2, 23, 4]} ]},
-                    { name: '[ITA] AltisLifeItaliaReloaded | ts3: ts.alir.it', addr: '34.35.563.24:2302', img: 'img/bannerServers/alir.jpg', map: 'Altis', players: 12, max_players: 142, rank: [ { like: [ 2, 23, 4]} ]},
-                    { name: '[ITA] FutureLife | ts3: ts.futurelife.it', addr: '35.3.5.25:2302', img: 'img/bannerServers/lossantosFuture.jpg', map: 'Altis', players: 2, max_players: 60, rank: [ { like: [ 2, 23, 4]} ]}
+                    { name: '[ITA] LessLife | ts3: ts.lesslife.it', addr: '51.38.114.224:2302', img: 'img/bannerServers/SIGBanner.jpg', map: 'Altis', players: 47, max_players: 214, rank: [ { like: [ 2, 23, 4]} ]}
                 ],
                 serverUpdate: 0
             },
@@ -30,33 +26,30 @@ class ServerListPage extends Component {
     };
     
     renderServers(servers) {
-        console.log('renderServers');
+        
         if (this.state.serverOverView === 'table') {
-            console.log('start RENDER TABLE')
+            
             return <ServerListTABLE servers={servers} />;
         } else if (this.state.serverOverView === 'button') {
-            console.log('start RENDER BUTTON')
+            
             return <ServerListBUTTON servers={servers} />;
         };
         return <h1 style={{ backgroundColor: 'red', padding: '10px' }}>Error -> {this.state.serverOverView}</h1>
     };
 
     changeOverview(type) {
-        console.log('changeOverview -> cambia il tipo di visuale')
         this.setState({ serverOverView: type });
     };
 
-    componentWillMount() {
-        console.log('componentWillMount -> fetch');
-
+    componentDidMount() {
         fetch('http://localhost:8888/api/serverlist', {
             method: 'get'
         }).then(res => res.json()).then(data => this.setState({ servers: data }));
     };
 
     render() {
-        console.log('render')
-        console.log(this.state.servers);
+        
+        
 
         return (
             <div className="ServerListPage">
@@ -84,7 +77,9 @@ class ServerListPage extends Component {
                         </form>
                     </div>
 
-                    <div className="servers text-light">{this.renderServers(this.state.servers)}</div>
+                    <div className="servers text-light">
+                        {this.renderServers(this.state.servers)}
+                    </div>
 
                 </main>
                 <Footer />

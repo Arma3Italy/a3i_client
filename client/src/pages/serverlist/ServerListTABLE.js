@@ -3,10 +3,12 @@ import React, { Component } from 'react';
 class ServerListTABLE extends Component {
     constructor(props) {
         super(props);
+
+        console.log(props)
+
         this.state = {
             servers: props.servers.serverList
         };
-        console.log('RENDER TABLE')
     };
 
     serverStatusChecker( server ) {
@@ -27,6 +29,10 @@ class ServerListTABLE extends Component {
         ));
 
         return sl;
+    };
+
+    componentWillReceiveProps(props) {
+        this.setState({ servers: props.servers.serverList });
     };
 
     render() {

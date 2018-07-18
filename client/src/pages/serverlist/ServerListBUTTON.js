@@ -32,6 +32,10 @@ class ServerListBUTTON extends Component {
         return sl;
     };
 
+    componentWillReceiveProps(props) {
+        this.setState({ servers: props.servers.serverList });
+    };
+
     render() {
         return (
             <div className="serverBOX row">
