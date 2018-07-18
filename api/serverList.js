@@ -45,7 +45,15 @@ route.get('/', (req, res) => {
  * @example /api/serverList/ip?address=95.172.92.102&port=2303
  */
 route.get('/ip', (req, res) => {
-    res.json(JSON.parse(serverList).serverList.find(x => x.addr.split(':')[0] == req.query.address && (req.query.port !== undefined ? x.addr.split(':')[1] == String(parseInt(req.query.port) + 1) : true) ));
+    const serverTrovati = JSON.parse(serverList).serverList.find(server => {
+        const ip = server.addr.split(':')[0];
+        const port = server.addr.split(':')[1];
+
+        if ( req.query.address == ip && req.query.port == port ) {
+            return true
+        }
+    });
+    res.json(serverTrovati)
 })
 
 // GET specific server
