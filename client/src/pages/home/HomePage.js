@@ -3,32 +3,42 @@ import './home.css';
 
 class HomePage extends Component {
 
+    state = {
+        imgList: ['arma3jet.jpg', 'arma3kart.jpg', 'arma3mine.jpg', 'arma3tank.jpg'],
+        imgSelected: 1,
+        imgDaley: 6 // in seconds
+    };
+
+    componentDidMount() {
+        this.imgChanger = setInterval(() => {
+            this.setState({
+                imgSelected: this.state.imgSelected < this.state.imgList.length-1 ? this.state.imgSelected+1 : 0
+            });
+        }, this.state.imgDaley*1000);
+    };
+
     render() {
         return (
-            <div className="HomePage">
-                <div className="Cover">
-                    <div id="imgCover"></div>
-                    <div className="blackCover"></div>
+            <div className="HomePage" style={{ backgroundImage: `url('/img/bg/${this.state.imgList[this.state.imgSelected]}')` }}>
+                <div className="blackHover"></div>
+                <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.0/css/all.css" integrity="sha384-lKuwvrZot6UHsBSfcMvOkWwlCMgc0TaWr+30HWe3a4ltaBwTZhyTEggF5tJv8tbt" crossOrigin="anonymous" />
+                
+                <div className='A3I_container'>
+                    <a rel="noopener noreferrer" href="/" ><img src="/img/logo_arma3italy.png" alt="Arma3Italy" /></a>
+
+                    <p>Arma 3 Italy è una community aperta creata appositamente con lo scopo di riunire tutti i giocatori Italiani che vogliono incontrare nuove persone e divertirsi.</p>
+                    <p>Il gruppo è libero e non obbliga i suoi partecipanti ad indossare tag in gioco oppure a cambiare il nome in alcun modo, inoltre non c'è limite di età!</p>
+                    <p>Nel nostro gruppo potrai trovare staffer pronti a chiarire i vostri dubbi, ed a cui interessa creare un ambiente socievole per i giocatori!</p>
+
+                    <a className="btnLinks" rel="noopener noreferrer" href="https://steamcommunity.com/groups/A3ITA" target="_blank" title="Steam Group"><i className="fab fa-steam"></i></a>
+                    <a className="btnLinks" rel="noopener noreferrer" href="https://discord.gg/R4d5HBB" target="_blank" title="Discord"><i className="fab fa-discord"></i></a>
+                    <a className="btnLinks" rel="noopener noreferrer" href="/serverlist" title="Server List"><i className="fas fa-server"></i></a>
+                    <a className="btnLinks" rel="noopener noreferrer" href="/" title="Infistar Bans"><i className="fas fa-user-secret"></i></a>
+                    <a className="btnLinks" rel="noopener noreferrer" href="/login" title="Login"><i className="fas fa-user-circle"></i></a>
                 </div>
 
-                <div className="A3I_container">
-                    <div className="text-center justify-content-center">
-                        <img className="A3I_logoTitle" src="img/logo_arma3italy.png" alt="Arma3Italy" />
-                        <p className="A3I_sh">Arma 3 Italy è una community aperta creata appositamente con lo scopo di riunire tutti i giocatori Italiani che vogliono incontrare nuove persone e divertirsi.</p>
-                        <p className="A3I_sh">Il gruppo è libero e non obbliga i suoi partecipanti ad indossare tag in gioco oppure a cambiare il nome in alcun modo, inoltre non c'è limite di età!</p>
-                        <p className="A3I_sh">Nel nostro gruppo potrai trovare staffer pronti a chiarire i vostri dubbi, ed a cui interessa creare un ambiente socievole per i giocatori!</p>
-                        <div className="A3I_sh"><br/> <hr/></div>
-                        <a rel="noopener noreferrer" href="https://steamcommunity.com/groups/A3ITA" target="_blank" className="A3I_iconLink"><i className="fab fa-steam"></i> <span>Steam Group</span></a>
-                        <a rel="noopener noreferrer" href="https://discord.gg/R4d5HBB" target="_blank" className="A3I_iconLink"><i className="fab fa-discord"></i> <span>Discord</span></a>
-                        <a rel="noopener noreferrer" href="/serverlist" className="A3I_iconLink"><i className="fas fa-server"></i> <span>Server List</span></a>
-                        <a rel="noopener noreferrer" href="/infistarbans" className="A3I_iconLink"><i className="fas fa-user-secret"></i> <span>Infistar Bans</span></a>
-                        <a rel="noopener noreferrer" href="/login" className="A3I_iconLink"><i className="fas fa-user-circle"></i> <span>Login</span></a>
-                    </div>
-                </div>
+                <div className="footer"> By <a rel="noopener noreferrer" href="https://steamcommunity.com/id/xedom/" target="_blank" title="Contact Me">XEDOM</a> with ❤️</div>
 
-                <footer>by <a rel="noopener noreferrer" href="https://steamcommunity.com/id/xedom/" target="_blank">XEDOM</a></footer>
-                <script src="js/BGCover.js"></script>
-                <script src="js/home.js"></script>
             </div>
         );
     };

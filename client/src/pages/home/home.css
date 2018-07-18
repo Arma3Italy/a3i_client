@@ -1,119 +1,67 @@
-* { margin: 0; padding: 0; }
-
-body {
-    background-color: #222;
-}
-
-.Cover {
-    position: fixed;
-    top: 0;
-    left: 0;
+.HomePage {
     height: 100vh;
     width: 100%;
-    z-index: -1;
-}
-
-.Cover .blackCover {
-    background-color: #000;
-    
+    color: #eee;
+    background-color: #222;
+    background-position: center;
+    background-size: cover;
+    transition: background 2s;
     position: absolute;
     top: 0;
     left: 0;
+    z-index: -1;
+    display: grid;
+}
 
-    height: 100%;
-    width: 100%;
-
+.HomePage .blackHover {
+    background-color: #000;
     opacity: .9;
+    height: 100vh;
+    width: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: -1;
 }
 
-.A3I_container {
-    /* background-color: #22f; */
-    color: #eee;
-    width: 700px;
-    margin: 10% auto 20px;
-    font-family: 'Open Sans', sans-serif;
+.HomePage .A3I_container {
+    align-self: center;
+    justify-self: center;
     text-align: center;
-    
+    max-width: 500px;
 }
 
-.A3I_container h1 {
-    padding: 10px 0;
-    font-size: 60px;
-}
-
-.A3I_container img.A3I_logoTitle {
-    width: 200px;
+.HomePage .A3I_container img {
+    margin: 20px auto;
     display: block;
-    margin: 0 auto;
+    width: 200px;
 }
 
-.A3I_container p {
-    padding: 10px 0;
-    font-size: 15px;
-}
-
-a {
+.HomePage .A3I_container  a.btnLinks {
+    display: inline-block;
     text-decoration: none;
-}
-
-a.A3I_iconLink i, a.A3I_iconLink span {
-    font-size: 40px;
-    padding: 10px;
-    margin: 10px;
-    color: #999;
-    transition: .2s;
-}
-
-a.A3I_iconLink span {
-    display: none;
-}
-
-a.A3I_iconLink i:hover {
     font-size: 50px;
     padding: 10px;
-    margin: 0 5px;
     color: #eee;
+    transition: .2s;
+    margin: 10px;
+}
+.HomePage .A3I_container  a.btnLinks:hover {
+    color: #fc0;
+    font-size: 60px;
+    margin: -5px 5px;
+    text-shadow: 0 0 15px #fa0;
+}
+.HomePage .A3I_container  a.btnLinks:active {
+    color: #fa0;
+    transform: rotate(-20deg);
 }
 
-a.A3I_iconLink i:active {
-    transform: rotate(20deg);
-}
 
-footer {
-    color: #eee;
-    font-family: 'Open Sans', sans-serif;
+.HomePage .footer {
+    margin-top: -20px;
     text-align: center;
-
 }
-
-footer a {
-    color: #ffc700;
-    font-family: 'Open Sans', sans-serif;
-}
-
-@media only screen and (max-width: 800px) {
-
-
-    .A3I_container {
-        width: 100%;
-    }
-
-    .A3I_sh {
-        display: none;
-    }
-
-    a.A3I_iconLink i {
-        padding: 20px;
-        font-size: 80px;
-        margin: 10px;
-    }
-
-    a.A3I_iconLink i:hover {
-        font-size: 100px;
-    }
-
-}
-
-.A3I_bg-dark {
-    /* background-color: #222; */
+.HomePage .footer a {
+    color: #fb0;
 }

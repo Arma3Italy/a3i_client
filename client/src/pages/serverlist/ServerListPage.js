@@ -3,7 +3,6 @@ import Header from '../Header';
 import Footer from '../Footer';
 import ServerListTABLE from './ServerListTABLE';
 import ServerListBUTTON from './ServerListBUTTON';
-import BG from '../BG';
 import '../../bootstrap.min.css';
 
 class ServerListPage extends Component {
@@ -53,7 +52,6 @@ class ServerListPage extends Component {
         return (
             <div className="ServerListPage">
                 <Header />
-                <BG />
                 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.0/css/all.css" integrity="sha384-lKuwvrZot6UHsBSfcMvOkWwlCMgc0TaWr+30HWe3a4ltaBwTZhyTEggF5tJv8tbt" crossOrigin="anonymous" />
                 <main className="container">
                     <h1>Server List</h1>
