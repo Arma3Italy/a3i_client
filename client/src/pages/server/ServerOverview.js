@@ -16,6 +16,20 @@ class ServerOverview extends Component {
             .then(server => this.setState({server}))
     };
 
+    createChangeLog( arrayChangeLog ) {
+        arrayChangeLog = arrayChangeLog.map(changeLog => (
+            <div className="card m-2 col-lg-3">
+                <div className="card-body">
+                    <h5 className="card-title">{changeLog.title}</h5>
+                    <p class="card-text">{changeLog.body}</p>
+                    <p class="card-text"><small class="text-muted">{changeLog.date}</small></p>
+                </div>
+            </div>
+        ));
+
+        return arrayChangeLog;
+    }
+
     render() {
         const { server } = this.state;
 
@@ -29,7 +43,7 @@ class ServerOverview extends Component {
                         <h1 className="text-center">{server.name}</h1>
 
                         <div className="row">
-                            <div className="info col-md-7">
+                            <div className="info col-lg-7 my-3">
                                 <h3>Informazioni</h3>
                                 <div className="content">
                                     <table class="table table-dark table-sm">
@@ -49,7 +63,7 @@ class ServerOverview extends Component {
                                 </div>
                             </div>
                             
-                            <div className="links col-md-4">
+                            <div className="links col-lg-4 my-3">
                                 <h3>Links</h3>
                                 <div className="content">
                                     <a href="#" className="btn btn-secondary m-2"> TeamSpeak3 </a>
@@ -63,17 +77,38 @@ class ServerOverview extends Component {
                                 </div>
                             </div>
                             
-                            <div className="desc col-12">
+                            <div className="desc col-12 my-3">
                                 <h3>Descrizione</h3>
                                 <div className="content">
                                     <p> {server.desc} </p>
                                 </div>
                             </div>
                             
-                            <div className="changelog col-12">
+                            <div className="changelog col-12 my-3">
                                 <h3>ChangeLog</h3>
-                                <div className="content">
-                                    <p> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam eu cursus nisi. Vivamus ac molestie libero. Aliquam ut ex erat. Vivamus ultricies ut lacus sit amet euismod. Morbi varius vel tellus nec ornare. Etiam scelerisque vel eros a finibus. Morbi facilisis turpis nec commodo bibendum. Integer sed ligula et enim sollicitudin convallis. Mauris porta orci ac interdum imperdiet. Nam sit amet justo blandit est commodo tristique in vel tortor. In tristique laoreet diam ac fermentum. Etiam scelerisque viverra erat, eget sagittis lorem viverra nec.</p>
+                                <div className="content row">
+                                    {this.createChangeLog([
+                                        {
+                                            title: 'aggiornamento #1',
+                                            body: 'questo è un aggiornamento per fixare molti bug segnalati dalla community',
+                                            date: '18.07.2018'
+                                        },
+                                        {
+                                            title: 'aggiornamento #2',
+                                            body: 'aggiunti scirpt per la polizia e i medici, in brave verrano aggiunte anche le skin',
+                                            date: '12.02.2018'
+                                        },
+                                        {
+                                            title: 'aggiornamento #3',
+                                            body: 'abbiamo aggiunto nuove skin per le uniformi e i veicoli',
+                                            date: '05.06.2018'
+                                        },
+                                        {
+                                            title: 'aggiornamento #4',
+                                            body: 'aggiunti nuovi script e nuove interfacce per gli shop, aggiunta anche una base per 3 gang e aggiornata la mappa con nuove strutture',
+                                            date: '21.01.2018'
+                                        }
+                                    ])}
                                 </div>
                             </div>
                         </div>
