@@ -2,18 +2,38 @@ import React, { Component } from 'react';
 import Header from '../Header';
 import Footer from '../Footer';
 
+import {Bar, Line, Pie} from 'react-chartjs-2';
+
 
 class ServerOverview extends Component {
     constructor(props) {
         super(props);
 
-        this.state = { serverID: props.match.params.id, server: {} };
+        this.state = { serverID: props.match.params.id, server: {}, data: {} };
     };
 
     componentDidMount() {
         fetch(`http://localhost:8888/api/serverlist/ip?address=${this.state.serverID.split(':')[0]}&port=${this.state.serverID.split(':')[1]}`)
             .then(data => data.json())
             .then(server => this.setState({server}))
+            .then(() => {
+                this.setState({ 
+                    data: {
+                        labels: this.state.server.plyrank.map(x => x.time),
+                        datasets: [{
+                            label: 'Giocatori ONLINE',
+                            data: this.state.server.plyrank.map(x => x.ply),
+                            borderColor: '#222',
+                            borderWidth: 1,
+                            fill: false,
+                            pointBackgroundColor: '#fa2',
+                            pointBorderColor: '#fa2'
+                        }]
+                    }
+                });
+            });
+
+        
     };
 
     createChangeLog( arrayChangeLog ) {
@@ -21,8 +41,8 @@ class ServerOverview extends Component {
             <div className="card m-2 col-lg-3">
                 <div className="card-body">
                     <h5 className="card-title">{changeLog.title}</h5>
-                    <p class="card-text">{changeLog.body}</p>
-                    <p class="card-text"><small class="text-muted">{changeLog.date}</small></p>
+                    <p className="card-text">{changeLog.body}</p>
+                    <p className="card-text"><small className="text-muted">{changeLog.date}</small></p>
                 </div>
             </div>
         ));
@@ -39,30 +59,37 @@ class ServerOverview extends Component {
                     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.0/css/all.css" integrity="sha384-lKuwvrZot6UHsBSfcMvOkWwlCMgc0TaWr+30HWe3a4ltaBwTZhyTEggF5tJv8tbt" crossOrigin="anonymous" />
                     <Header />
                     <main className="container my-3">
-                        <img className="img-fluid" src={'/'+server.img} alt={server.img}/>
-                        <h1 className="text-center">{server.name}</h1>
+                        <img className="img-fluid rounded-top" src={'/'+server.img} alt={server.img}/>
+                        <h3 className="bg-dark text-light p-3 text-center rounded-bottom">{server.name}</h3>
 
                         <div className="row">
+
+                            <div className="playerStatistis col-12">
+                                <h3>Giocatori</h3>
+                                <Line data={this.state.data} />
+                            </div>
+
+
                             <div className="info col-lg-7 my-3">
                                 <h3>Informazioni</h3>
                                 <div className="content">
-                                    <table class="table table-dark table-sm">
-                                        <tbody>
-                                            <tr> <td>Nome</td> <td>{server.name}</td> </tr>
-                                            <tr> <td>IP</td> <td>{server.addr}</td> </tr>
-                                            <tr> <td>Giocatori</td> <td>{server.players}</td> </tr>
-                                            <tr> <td>Server</td> <td>{server.dedicated === true ? 'Dedicato' : 'Hostato'}</td> </tr>
-                                            <tr> <td>Sistema Operativo</td> {server.os === 'w' ? (<td><i class="fab fa-windows"></i> Windows</td>) : (<td><i class="fab fa-linux"></i> Linux</td>)}</tr>
-                                            {/* <tr> <td>Modalità di gioco</td> <td>{server.gametype.GameType}</td> </tr> */}
-                                            {/* <tr> <td>Difficotà</td> <td>{server.gametype.Difficulty}</td> </tr> */}
-                                            {/* <tr> <td>BattleEye</td> <td>{server.gametype.BattleEye === 't' ? 'Attivo' : 'Disattivo'}</td> </tr> */}
-                                            <tr> <td>Versione</td> <td>{server.version}</td> </tr>
-                                            <tr> <td>Proprietario</td> <td>{server.serverClaim}</td> </tr>
-                                        </tbody>
-                                    </table>
+                                    <div>
+                                        <div className="row shadow my-1"> <div className="bg-dark text-light col-4 rounded-left">Nome</div> <div className="bg-light text-dark col-8 rounded-right">{server.name}</div> </div>
+                                        <div className="row shadow my-1"> <div className="bg-dark text-light col-4 rounded-left">IP</div> <div className="bg-light text-dark col-8 rounded-right">{server.addr}</div> </div>
+                                        <div className="row shadow my-1"> <div className="bg-dark text-light col-4 rounded-left">Giocatori</div> <div className="bg-light text-dark col-8 rounded-right">{server.players}</div> </div>
+                                        <div className="row shadow my-1"> <div className="bg-dark text-light col-4 rounded-left">Server</div> <div className="bg-light text-dark col-8 rounded-right">{server.dedicated === true ? 'Dedicato' : 'Hostato'}</div> </div>
+                                        <div className="row shadow my-1"> <div className="bg-dark text-light col-4 rounded-left">Sistema Operativo</div> {server.os === 'w' ? (<div className="bg-light text-dark col-8 rounded-right"><i className="fab fa-windows"></i> Windows</div>) : (<div className="bg-light text-dark col-8 rounded-right"><i className="fab fa-linux"></i> Linux</div>)}</div>
+                                        <div className="row shadow my-1"> <div className="bg-dark text-light col-4 rounded-left">Modalità di gioco</div> <div className="bg-light text-dark col-8 rounded-right">{server.gametype}</div> </div>
+                                        <div className="row shadow my-1"> <div className="bg-dark text-light col-4 rounded-left">Difficotà</div> <div className="bg-light text-dark col-8 rounded-right">{server.difficulty}</div> </div>
+                                        <div className="row shadow my-1"> <div className="bg-dark text-light col-4 rounded-left">BattleEye</div> <div className="bg-light text-dark col-8 rounded-right">{server.battleeye === true ? 'Attivo' : 'Disattivo'}</div> </div>
+                                        <div className="row shadow my-1"> <div className="bg-dark text-light col-4 rounded-left">Posizione</div> <div className="bg-light text-dark col-8 rounded-right">{server.country === undefined ? 'Sconosciuta' : server.country}</div> </div>
+                                        <div className="row shadow my-1"> <div className="bg-dark text-light col-4 rounded-left">Versione</div> <div className="bg-light text-dark col-8 rounded-right">{server.version}</div> </div>
+                                        <div className="row shadow my-1"> <div className="bg-dark text-light col-4 rounded-left">Proprietario</div> <div className="bg-light text-dark col-8 rounded-right">{server.serverClaim === undefined ? 'Non definito' : server.serverClaim.map( proprietario => <a className="mx-1" href="#">{ proprietario }</a> ) }</div> </div>
+                                    </div>
                                 </div>
                             </div>
                             
+
                             <div className="links col-lg-4 my-3">
                                 <h3>Links</h3>
                                 <div className="content">
@@ -77,12 +104,14 @@ class ServerOverview extends Component {
                                 </div>
                             </div>
                             
+
                             <div className="desc col-12 my-3">
                                 <h3>Descrizione</h3>
                                 <div className="content">
                                     <p> {server.desc} </p>
                                 </div>
                             </div>
+
                             
                             <div className="changelog col-12 my-3">
                                 <h3>ChangeLog</h3>
@@ -111,14 +140,14 @@ class ServerOverview extends Component {
                                     ])}
                                 </div>
                             </div>
+
+
                         </div>
 
                     </main>
                     <Footer />
                 </div>
             );
-        } else {
-            return ( <div> LOADING . . . </div> )
         };
     };
 };
