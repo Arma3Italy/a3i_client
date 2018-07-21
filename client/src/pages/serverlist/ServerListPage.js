@@ -53,7 +53,7 @@ class ServerListPage extends Component {
             <div className="ServerListPage">
                 <Header />
                 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.0/css/all.css" integrity="sha384-lKuwvrZot6UHsBSfcMvOkWwlCMgc0TaWr+30HWe3a4ltaBwTZhyTEggF5tJv8tbt" crossOrigin="anonymous" />
-                <main className="container">
+                <main className="container my-5">
                     <h1>Server List</h1>
                     <p>Ecco la lista dei server italiani, scelti in base a queste TAG: [ITA] - ITALIA - Italia - ITA - ita - [IT] - [ITA/EU] - [EU/ITA] - [ALIR]. Se il tuo server non è presente nella lista contatta lo STAFF.</p>
 
