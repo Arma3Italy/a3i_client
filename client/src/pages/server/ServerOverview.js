@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import Header from '../Header';
 import Footer from '../Footer';
 
-import {Bar, Line, Pie} from 'react-chartjs-2';
+import { Line } from 'react-chartjs-2';
 
 
 class ServerOverview extends Component {
@@ -19,7 +19,7 @@ class ServerOverview extends Component {
             .then(() => {
                 this.setState({ 
                     data: {
-                        labels: this.state.server.plyrank.map(x => x.time),
+                        labels: this.state.server.plyrank.map(x => new Date(x.time).toDateString()),
                         datasets: [{
                             label: 'Giocatori ONLINE',
                             data: this.state.server.plyrank.map(x => x.ply),
@@ -32,8 +32,6 @@ class ServerOverview extends Component {
                     }
                 });
             });
-
-        
     };
 
     createChangeLog( arrayChangeLog ) {
