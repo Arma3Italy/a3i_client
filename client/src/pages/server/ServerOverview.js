@@ -51,7 +51,6 @@ class ServerOverview extends Component {
                 plyrank = plyrank.filter((stat, index) => index % step === 0 && index < step*numShowStats ? true : false);
                 plyrank.reverse();
 
-                const colorChart = '#fa2';
                 this.setState({
                     data: {
                         labels: plyrank.map(x => new Date(x.time).toDateString()),
@@ -87,12 +86,10 @@ class ServerOverview extends Component {
                             <div className="playerStatistis col-12">
                                 <h3>Giocatori</h3>
                                 <Line data={this.state.data} options={{
-                                    responsive: true,
-                                    maintainAspectRatio: true,
                                     layout: { padding: { left: 0, right: 0, top: 0,  bottom: 0 } },
                                     legend: { display: false },
                                     scales: { xAxes: [{ display: false }], yAxes: [{ display: false }] }
-                                }} height='50px' />
+                                }} height={50} />
                             </div>
 
 
@@ -107,7 +104,7 @@ class ServerOverview extends Component {
                                 { head: 'BattleEye', body: (server.battleeye === true ? 'Attivo' : 'Disattivo') },
                                 { head: 'Posizione', body: (server.country === undefined ? 'Sconosciuta' : server.country) },
                                 { head: 'Versione', body: server.version },
-                                { head: 'Proprietario', body: (server.serverClaim === undefined ? 'Non definito' : server.serverClaim.map(proprietario => <a className="mx-1" href="#">{proprietario}</a>)) }
+                                { head: 'Proprietario', body: (server.serverClaim === undefined ? 'Non definito' : server.serverClaim.map(proprietario => <a className="mx-1" href={'https://steamcommunity.com/profiles/'+proprietario}>{proprietario}</a>)) }
                             ]} />
                             
 
