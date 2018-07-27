@@ -95,7 +95,7 @@ class ServerOverview extends Component {
 
                             <ServerInfoTable title='Informazioni' data={[
                                 { head: 'Nome', body: server.name },
-                                { head: 'IP', body: (String(server.addr).split(':')[0]+':'+server.gameport) },
+                                { head: 'IP', body: (<span>{String(server.addr).split(':')[0]}:{server.gameport} <a className="" rel="noopener noreferrer" href={`steam://run/107410//-connect=${String(server.addr).split(':')[0]}:${server.gameport}`}><i className="fas fa-sign-in-alt"></i></a></span>) },
                                 { head: 'Giocatori', body: server.players },
                                 { head: 'Server', body: (server.dedicated === true ? 'Dedicato' : 'Hostato') },
                                 { head: 'Sistema Operativo', body: (server.os === 'w' ? (<span><i className="fab fa-windows"></i> Windows</span>) : (<span><i className="fab fa-linux"></i> Linux</span>)) },
