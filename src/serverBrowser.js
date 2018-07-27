@@ -1,22 +1,11 @@
 
-const cfg = require('../cfg/cfg');
-const fs = require('fs');
-const path = require('path');
+const cfg = require('../cfg/cfg').steam;
 const axios = require('axios');
+const { checkObject, checkFile } = require('./fnc');
 
-const url = `https://api.steampowered.com/IGameServersService/GetServerList/v1/?key=${cfg.steam.apikey}&format=json${cfg.steam.serverListCFG.filters == '' ? '' : '&filter=' + cfg.steam.serverListCFG.filters}${cfg.steam.serverListCFG.limit == '' ? '' : '&limit=' + cfg.steam.serverListCFG.limit}`;
-
-const pathDB = path.resolve(__dirname, '..', 'db');
-const fileDB = 'serverList.json';
-
-let dev = false;
+const url = `https://api.steampowered.com/IGameServersService/GetServerList/v1/?key=${cfg.apikey}&format=json${cfg.serverListCFG.filters == '' ? '' : '&filter=' + cfg.serverListCFG.filters}${cfg.serverListCFG.limit == '' ? '' : '&limit=' + cfg.serverListCFG.limit}`;
 
 console.log('-> serverBrowser loaded');
-
-function checkObject(type, data) {
-    if (type == 'o') return (typeof data == 'object' ? data : JSON.parse(data));
-    if (type == 's') return (typeof data == 'string' ? data : JSON.stringify(data));
-};
 
 function parseGameTag(gameTag) {
     if (gameTag === undefined) return {};
@@ -44,29 +33,27 @@ function parseGameTag(gameTag) {
 };
 
 function parseServer(server) {
-    server = checkObject('o', server)
     server.updateTime = Date.now();
-    server.serverClaim = []; // steam ID del proprietario
-    server.img = "img/bannerServers/banner_test.jpg"; // banner server
-    server.desc = " PER LA DESCRIZIONE CONTATTARE XEDOM"; // descrizione server
+
+    server.serverClaim = [];
+    server.img = "img/bannerServers/banner_test.jpg";
+    server.desc = " PER LA DESCRIZIONE CONTATTARE XEDOM";
+
     server.rank = [
         {
             time: {
                 mese: 0,
                 anno: 0
             },
-            like: [], // steamID delle persone a chi piace il server
-            dislike: [] // steamID delle persone a chi non piace il server
+            like: [],
+            dislike: []
         }
     ];
-    server.plyrank = [
-        {
-            time: Date.now(),
-            ply: server.players
-        }
-    ];
+
+    server.plyrank = [ { time: Date.now(), ply: server.players } ];
+
     server.status = true;
-    // server.gametype = parseGameTag(server.gametype);
+    
     let gametype = parseGameTag(server.gametype);
     server.gametype = gametype.gametype;
 
@@ -74,26 +61,16 @@ function parseServer(server) {
 };
 
 function filterServerList(servers) {
-    servers = checkObject('o', servers)
-    const filter = new RegExp(cfg.steam.serverListCFG.reFilters, 'gim');
+    const filter = new RegExp(cfg.serverListCFG.reFilters, 'gim');
     const serversFiltered = servers.filter(server => filter.test(server.name));
+
     const serverCount = serversFiltered.length;
     const serverList = serversFiltered.map(parseServer);
 
     return ({ serverUpdate: Date.now(), serverCount, serverList });
 };
 
-function checkServerOFF(server) {
-    const currentData = Date.now();
-    const giorni = 2;
-    const delServer = Math.floor((currentData - server.updateTime) / (1000 * 60 * 60 * 24)) >= giorni ? true : false;
-    const owners = server.serverClaim.length >= 1;
-
-    if (owners) return true;
-    return !delServer;
-};
-
-function checkServerON(server, newServer) {
+function setOnServer(server, newServer) {
     newServer = newServer.serverList.find(serv => serv.addr === server.addr);
 
     newServer.updateTime = Date.now();
@@ -110,67 +87,53 @@ function checkServerON(server, newServer) {
     return newServer;
 };
 
-function setStatusServer(server, status) {
-    server.status = status;
+function checkOffServer(server) {
+    const currentData = Date.now();
+    const giorni = 2;
+    const delServer = Math.floor((currentData - server.updateTime) / (1000 * 60 * 60 * 24)) >= cfg.serverListCFG.daysExpireOffServer ? true : false;
+    const owners = server.serverClaim.length >= 1;
+
+    if (owners) return true;
+    return !delServer;
+};
+
+function setOffServer(server) {
+    server.status = false;
+    server.players = 0
     return server;
 };
 
-function checkServer(rout, olddata, newdata) {
+function checkServer(newdata, olddata) {
     olddata = checkObject('o', olddata);
-    newdata = checkObject('o', newdata);
+    newdata = filterServerList(checkObject('o', newdata));
+    
+    if (olddata !== undefined && olddata.serverList !== undefined) {
 
-    let serversON = olddata.serverList.filter(serverO => newdata.serverList.find(serverN => serverN.addr == serverO.addr));
-    let serversOFF = olddata.serverList.filter(serverO => !newdata.serverList.find(serverN => serverN.addr == serverO.addr));
-    let serversNUOVI = newdata.serverList.filter(serverN => !olddata.serverList.find(serverO => serverN.addr == serverO.addr));
+        let serversON = olddata.serverList.filter(serverO => newdata.serverList.find(serverN => serverN.addr == serverO.addr));
+        let serversOFF = olddata.serverList.filter(serverO => !newdata.serverList.find(serverN => serverN.addr == serverO.addr));
+        let serversNUOVI = newdata.serverList.filter(serverN => !olddata.serverList.find(serverO => serverN.addr == serverO.addr));
+    
+        serversOFF = serversOFF.map(setOffServer);
+        serversOFF = serversOFF.filter(checkOffServer);
+        serversON = serversON.map(server => setOnServer(server, newdata));
+    
+        const serverAggiornati = [...serversON, ...serversOFF, ...serversNUOVI];
+        newdata.serverList = serverAggiornati;
+        newdata.serverCount = newdata.serverList.length;
 
-    if (dev) {
-        console.log(`olddata: -> ${olddata.serverList.length}`);
-        console.log(`newdata: -> ${newdata.serverList.length}`);
-        console.log(`serversON: -> ${serversON.length}`);
-        console.log(`serversOFF: -> ${serversOFF.length}`);
-        console.log(`serversNUOVI: -> ${serversNUOVI.length}`);
     };
 
-    serversOFF = serversOFF.map(server => setStatusServer(server, false));
-    serversOFF = serversOFF.filter(checkServerOFF);
-    serversON = serversON.map(server => checkServerON(server, newdata));
-
-    const serverAggiornati = [...serversON, ...serversOFF, ...serversNUOVI];
-    newdata.serverList = serverAggiornati;
-    newdata.serverCount = newdata.serverList.length;
-
-    if (dev) { console.log(`serverAggiornati: -> ${newdata.serverList.length}`) };
-
-    initFileServerList(rout, newdata);
+    return (checkObject('s', newdata));
 };
 
-function initFileServerList(rout, data) {
-    fs.writeFileSync(rout, checkObject('s', data));
-};
-
-function checkFile(rout, file, dataServer) {
-    fs.readdir(rout, (err, data) => {
-        if (err) {
-            fs.mkdirSync(rout);
-            initFileServerList(path.resolve(rout, file), filterServerList(dataServer));
-        } else {
-            fs.readFile(path.resolve(rout, file), 'utf8', async (rferr, rfdata) => {
-                if (rferr) { initFileServerList(path.resolve(rout, file), filterServerList(dataServer)) }
-                else { checkServer(path.resolve(rout, file), rfdata, filterServerList(dataServer)) };
-            });
-        };
-    });
-};
-
-function serverListUpdater(devInput = false) {
-    dev = devInput;
+function serverListUpdater() {
     axios.get(url)
-        .then(res => checkFile(pathDB, fileDB, checkObject('o', res.data.response.servers)))
-        .catch(e => console.log(`-> ERROR to Load Servers { ${e} }`))
+        .then(res => checkFile(cfg.serverListCFG.dbDir, cfg.serverListCFG.dbServerListFile, checkObject('s', res.data.response.servers), checkServer))
+        .catch(e => console.log(`-> ERROR to Load Servers { ${e} }`));
+    
     console.log(`-> serverBrowser updated`);
 };
 
 serverListUpdater();
-
 
 module.exports = { serverListUpdater };
