@@ -19,7 +19,7 @@ class Table extends Component {
 
     createTab(arrayTabInfo) {
         arrayTabInfo = arrayTabInfo.map(data => (
-            <div className="row shadow my-1"> <div className="bg-dark text-light col-4 rounded-left">{String(data.head)}</div> <div className="bg-light text-dark col-8 rounded-right">{data.body}</div> </div>
+            <div className="row shadow my-1" key={data.head}> <div className="bg-dark text-light col-4 rounded-left">{String(data.head)}</div> <div className="bg-light text-dark col-8 rounded-right">{data.body}</div> </div>
         ));
 
         return arrayTabInfo;
