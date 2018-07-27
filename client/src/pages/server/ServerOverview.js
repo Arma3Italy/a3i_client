@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import Header from '../Header';
 import Footer from '../Footer';
 import ServerChangLogs from '../Cards';
+import ServerInfoTable from '../Table';
 
 import { Line } from 'react-chartjs-2';
 
@@ -94,24 +95,19 @@ class ServerOverview extends Component {
                             </div>
 
 
-                            <div className="info col-lg-7 my-3">
-                                <h3>Informazioni</h3>
-                                <div className="content m-3">
-                                    <div>
-                                        <div className="row shadow my-1"> <div className="bg-dark text-light col-4 rounded-left">Nome</div> <div className="bg-light text-dark col-8 rounded-right">{server.name}</div> </div>
-                                        <div className="row shadow my-1"> <div className="bg-dark text-light col-4 rounded-left">IP</div> <div className="bg-light text-dark col-8 rounded-right">{server.addr}</div> </div>
-                                        <div className="row shadow my-1"> <div className="bg-dark text-light col-4 rounded-left">Giocatori</div> <div className="bg-light text-dark col-8 rounded-right">{server.players}</div> </div>
-                                        <div className="row shadow my-1"> <div className="bg-dark text-light col-4 rounded-left">Server</div> <div className="bg-light text-dark col-8 rounded-right">{server.dedicated === true ? 'Dedicato' : 'Hostato'}</div> </div>
-                                        <div className="row shadow my-1"> <div className="bg-dark text-light col-4 rounded-left">Sistema Operativo</div> {server.os === 'w' ? (<div className="bg-light text-dark col-8 rounded-right"><i className="fab fa-windows"></i> Windows</div>) : (<div className="bg-light text-dark col-8 rounded-right"><i className="fab fa-linux"></i> Linux</div>)}</div>
-                                        <div className="row shadow my-1"> <div className="bg-dark text-light col-4 rounded-left">Modalità di gioco</div> <div className="bg-light text-dark col-8 rounded-right">{server.gametype}</div> </div>
-                                        <div className="row shadow my-1"> <div className="bg-dark text-light col-4 rounded-left">Difficotà</div> <div className="bg-light text-dark col-8 rounded-right">{server.difficulty}</div> </div>
-                                        <div className="row shadow my-1"> <div className="bg-dark text-light col-4 rounded-left">BattleEye</div> <div className="bg-light text-dark col-8 rounded-right">{server.battleeye === true ? 'Attivo' : 'Disattivo'}</div> </div>
-                                        <div className="row shadow my-1"> <div className="bg-dark text-light col-4 rounded-left">Posizione</div> <div className="bg-light text-dark col-8 rounded-right">{server.country === undefined ? 'Sconosciuta' : server.country}</div> </div>
-                                        <div className="row shadow my-1"> <div className="bg-dark text-light col-4 rounded-left">Versione</div> <div className="bg-light text-dark col-8 rounded-right">{server.version}</div> </div>
-                                        <div className="row shadow my-1"> <div className="bg-dark text-light col-4 rounded-left">Proprietario</div> <div className="bg-light text-dark col-8 rounded-right">{server.serverClaim === undefined ? 'Non definito' : server.serverClaim.map( proprietario => <a className="mx-1" href="#">{ proprietario }</a> ) }</div> </div>
-                                    </div>
-                                </div>
-                            </div>
+                            <ServerInfoTable title='Informazioni' data={[
+                                { head: 'Nome', body: server.name },
+                                { head: 'IP', body: server.addr },
+                                { head: 'Giocatori', body: server.players },
+                                { head: 'Server', body: (server.dedicated === true ? 'Dedicato' : 'Hostato') },
+                                { head: 'Sistema Operativo', body: (server.os === 'w' ? (<span><i className="fab fa-windows"></i> Windows</span>) : (<span><i className="fab fa-linux"></i> Linux</span>)) },
+                                { head: 'Modalità di gioco', body: server.gametype },
+                                { head: 'Difficotà', body: server.difficulty },
+                                { head: 'BattleEye', body: (server.battleeye === true ? 'Attivo' : 'Disattivo') },
+                                { head: 'Posizione', body: (server.country === undefined ? 'Sconosciuta' : server.country) },
+                                { head: 'Versione', body: server.version },
+                                { head: 'Proprietario', body: (server.serverClaim === undefined ? 'Non definito' : server.serverClaim.map(proprietario => <a className="mx-1" href="#">{proprietario}</a>)) }
+                            ]} />
                             
 
                             <div className="links col-lg-4 my-3">
