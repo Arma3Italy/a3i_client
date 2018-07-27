@@ -2,16 +2,17 @@ const express = require('express');
 const route = express.Router();
 const fs = require('fs');
 const path = require('path');
+const cfg = require('../cfg/cfg');
 
 function updaterServerList() {
-    return fs.readFileSync(path.resolve('db', 'serverList.json'), 'utf8');
+    return fs.readFileSync(path.resolve(cfg.steam.serverListCFG.dbDir, cfg.steam.serverListCFG.dbServerListFile), 'utf8');
 };
 
 let serverList = updaterServerList();
 
-setInterval(()=>{
+setInterval(() => {
     serverList = updaterServerList();
-},5000);
+}, 5000);
 
 
 route.use(function (req, res, next) {
@@ -38,20 +39,12 @@ route.get('/', (req, res) => {
     res.json(JSON.parse(serverList));
 });
 
-/**
- * @route /api/serverList/ip
- * @param {number} address REQUIRED
- * @param {number} port
- * @example /api/serverList/ip?address=95.172.92.102&port=2303
- */
 route.get('/ip', (req, res) => {
     const serverTrovati = JSON.parse(serverList).serverList.find(server => {
         const ip = server.addr.split(':')[0];
-        const port = server.addr.split(':')[1];
+        const port = server.gameport;
 
-        if ( req.query.address == ip && req.query.port == port ) {
-            return true
-        }
+        if ((req.query.address == ip && req.query.port == port) || (req.query.ip !== undefined && req.query.ip == server.addr ) ) return true;
     });
     res.json(serverTrovati)
 })
@@ -59,13 +52,6 @@ route.get('/ip', (req, res) => {
 // GET specific server
 route.get('/:id', (req, res) => {
     res.json(JSON.parse(serverList).serverList[req.params.id]);
-});
-
-route.post('/claim', (req, res) => {
-    res.json({
-        owner: req.session.user,
-        server: req.body.server
-    });
 });
 
 module.exports = route;
