@@ -17,14 +17,26 @@ class ServerOverview extends Component {
             .then(data => data.json())
             .then(server => this.setState({server}))
             .then(() => {
-                this.setState({ 
+                let plyrank = this.state.server.plyrank;
+
+                const timeframe = 7;
+                plyrank = plyrank.filter(stat => stat.time > Date.now() - ( timeframe*24*60*60*1000 ));
+                plyrank.sort((uno, due) => uno.time - due.time);
+                plyrank.reverse();
+
+                const numShowStats = 20;
+                const step = Math.floor(plyrank.length / numShowStats);
+                plyrank = plyrank.filter((stat, index) => index % step == 0 && index < step*numShowStats ? true : false);
+                plyrank.reverse();
+
+                this.setState({
                     data: {
-                        labels: this.state.server.plyrank.map(x => new Date(x.time).toDateString()),
+                        labels: plyrank.map(x => new Date(x.time).toDateString()),
                         datasets: [{
                             label: 'Giocatori ONLINE',
-                            data: this.state.server.plyrank.map(x => x.ply),
-                            borderColor: '#222',
-                            borderWidth: 1,
+                            data: plyrank.map(x => x.ply),
+                            borderColor: '#fa2',
+                            borderWidth: 2,
                             fill: false,
                             pointBackgroundColor: '#fa2',
                             pointBorderColor: '#fa2'
@@ -36,7 +48,7 @@ class ServerOverview extends Component {
 
     createChangeLog( arrayChangeLog ) {
         arrayChangeLog = arrayChangeLog.map(changeLog => (
-            <div className="card m-2 col-lg-3">
+            <div className="card m-2 col-lg-3" key={changeLog.title} >
                 <div className="card-body">
                     <h5 className="card-title">{changeLog.title}</h5>
                     <p className="card-text">{changeLog.body}</p>
@@ -64,7 +76,15 @@ class ServerOverview extends Component {
 
                             <div className="playerStatistis col-12">
                                 <h3>Giocatori</h3>
-                                <Line data={this.state.data} />
+                                <Line data={this.state.data} options={{
+                                    scales: {
+                                        yAxes: [{
+                                            ticks: {
+                                                beginAtZero:true
+                                            },
+                                        }]
+                                    }
+                                }}  />
                             </div>
 
 
