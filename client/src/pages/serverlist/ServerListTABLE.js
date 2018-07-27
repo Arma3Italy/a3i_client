@@ -28,7 +28,7 @@ class ServerListTABLE extends Component {
                                             {' '}<span className="badge badge-primary">
                                                 {i.gametype === undefined ? 'NONE' : i.gametype}
                                             </span> 
-                                            {i.name.length > 30 ? ' '+i.name.substring(0,35)+' ...' : ' '+i.name}
+                                            { window.innerWidth < 400 ? (i.name.length > 20 ? ' '+i.name.substring(0,25)+' ...' : ' '+i.name) : (i.name.length > 30 ? ' '+i.name.substring(0,35)+' ...' : ' '+i.name) }
                                         </a>
                                     </div>
                     </div>

@@ -47,7 +47,7 @@ class ServerOverview extends Component {
 
                 const numShowStats = 20;
                 const step = Math.floor(plyrank.length / numShowStats);
-                plyrank = plyrank.filter((stat, index) => index % step == 0 && index < step*numShowStats ? true : false);
+                plyrank = plyrank.filter((stat, index) => index % step === 0 && index < step*numShowStats ? true : false);
                 plyrank.reverse();
 
                 const colorChart = '#fa2';
