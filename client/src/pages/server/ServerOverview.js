@@ -29,18 +29,20 @@ class ServerOverview extends Component {
                 plyrank = plyrank.filter((stat, index) => index % step == 0 && index < step*numShowStats ? true : false);
                 plyrank.reverse();
 
+                const colorChart = '#fa2';
                 this.setState({
                     data: {
                         labels: plyrank.map(x => new Date(x.time).toDateString()),
                         datasets: [{
                             label: 'Giocatori ONLINE',
                             data: plyrank.map(x => x.ply),
-                            borderColor: '#fa2',
                             borderWidth: 2,
                             fill: false,
-                            pointBackgroundColor: '#fa2',
-                            pointBorderColor: '#fa2'
-                        }]
+                            borderColor: 'rgba(255, 170, 34,1)',
+                            backgroundColor: 'rgba(255, 170, 34,0.6)',
+                            pointBackgroundColor: 'rgba(255, 170, 34,1)',
+                            pointBorderColor: 'rgba(255, 170, 34,1)'
+                        }],
                     }
                 });
             });
@@ -77,14 +79,12 @@ class ServerOverview extends Component {
                             <div className="playerStatistis col-12">
                                 <h3>Giocatori</h3>
                                 <Line data={this.state.data} options={{
-                                    scales: {
-                                        yAxes: [{
-                                            ticks: {
-                                                beginAtZero:true
-                                            },
-                                        }]
-                                    }
-                                }}  />
+                                    responsive: true,
+                                    maintainAspectRatio: true,
+                                    layout: { padding: { left: 0, right: 0, top: 0,  bottom: 0 } },
+                                    legend: { display: false },
+                                    scales: { xAxes: [{ display: false }], yAxes: [{ display: false }] }
+                                }} height='50px' />
                             </div>
 
 
