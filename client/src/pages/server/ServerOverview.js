@@ -95,7 +95,7 @@ class ServerOverview extends Component {
 
                             <ServerInfoTable title='Informazioni' data={[
                                 { head: 'Nome', body: server.name },
-                                { head: 'IP', body: server.addr },
+                                { head: 'IP', body: (String(server.addr).split(':')[0]+':'+server.gameport) },
                                 { head: 'Giocatori', body: server.players },
                                 { head: 'Server', body: (server.dedicated === true ? 'Dedicato' : 'Hostato') },
                                 { head: 'Sistema Operativo', body: (server.os === 'w' ? (<span><i className="fab fa-windows"></i> Windows</span>) : (<span><i className="fab fa-linux"></i> Linux</span>)) },
