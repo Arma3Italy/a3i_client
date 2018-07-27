@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import Header from '../Header';
 import Footer from '../Footer';
+import ServerChangLogs from '../Cards';
 
 import { Line } from 'react-chartjs-2';
 
@@ -9,7 +10,26 @@ class ServerOverview extends Component {
     constructor(props) {
         super(props);
 
-        this.state = { serverID: props.match.params.id, server: {}, data: {} };
+        this.state = { serverID: props.match.params.id, server: {}, data: {}, changeLogs: [{
+            title: 'aggiornamento #1',
+            body: 'questo è un aggiornamento per fixare molti bug segnalati dalla community',
+            date: '18.07.2018'
+        },
+        {
+            title: 'aggiornamento #2',
+            body: 'aggiunti scirpt per la polizia e i medici, in brave verrano aggiunte anche le skin',
+            date: '12.02.2018'
+        },
+        {
+            title: 'aggiornamento #3',
+            body: 'abbiamo aggiunto nuove skin per le uniformi e i veicoli',
+            date: '05.06.2018'
+        },
+        {
+            title: 'aggiornamento #4',
+            body: 'aggiunti nuovi script e nuove interfacce per gli shop, aggiunta anche una base per 3 gang e aggiornata la mappa con nuove strutture',
+            date: '21.01.2018'
+        }] };
     };
 
     componentDidMount() {
@@ -48,20 +68,6 @@ class ServerOverview extends Component {
             });
     };
 
-    createChangeLog( arrayChangeLog ) {
-        arrayChangeLog = arrayChangeLog.map(changeLog => (
-            <div className="card m-2 col-lg-3" key={changeLog.title} >
-                <div className="card-body">
-                    <h5 className="card-title">{changeLog.title}</h5>
-                    <p className="card-text">{changeLog.body}</p>
-                    <p className="card-text"><small className="text-muted">{changeLog.date}</small></p>
-                </div>
-            </div>
-        ));
-
-        return arrayChangeLog;
-    }
-
     render() {
         const { server } = this.state;
 
@@ -90,7 +96,7 @@ class ServerOverview extends Component {
 
                             <div className="info col-lg-7 my-3">
                                 <h3>Informazioni</h3>
-                                <div className="content">
+                                <div className="content m-3">
                                     <div>
                                         <div className="row shadow my-1"> <div className="bg-dark text-light col-4 rounded-left">Nome</div> <div className="bg-light text-dark col-8 rounded-right">{server.name}</div> </div>
                                         <div className="row shadow my-1"> <div className="bg-dark text-light col-4 rounded-left">IP</div> <div className="bg-light text-dark col-8 rounded-right">{server.addr}</div> </div>
@@ -131,33 +137,7 @@ class ServerOverview extends Component {
                             </div>
 
                             
-                            <div className="changelog col-12 my-3">
-                                <h3>ChangeLog</h3>
-                                <div className="content row">
-                                    {this.createChangeLog([
-                                        {
-                                            title: 'aggiornamento #1',
-                                            body: 'questo è un aggiornamento per fixare molti bug segnalati dalla community',
-                                            date: '18.07.2018'
-                                        },
-                                        {
-                                            title: 'aggiornamento #2',
-                                            body: 'aggiunti scirpt per la polizia e i medici, in brave verrano aggiunte anche le skin',
-                                            date: '12.02.2018'
-                                        },
-                                        {
-                                            title: 'aggiornamento #3',
-                                            body: 'abbiamo aggiunto nuove skin per le uniformi e i veicoli',
-                                            date: '05.06.2018'
-                                        },
-                                        {
-                                            title: 'aggiornamento #4',
-                                            body: 'aggiunti nuovi script e nuove interfacce per gli shop, aggiunta anche una base per 3 gang e aggiornata la mappa con nuove strutture',
-                                            date: '21.01.2018'
-                                        }
-                                    ])}
-                                </div>
-                            </div>
+                            <ServerChangLogs title='ChangeLogs' data={this.state.changeLogs} />
 
 
                         </div>
