@@ -1,10 +1,10 @@
-const keys = require('../cfg/keys.json');
-const cfg = require('../cfg/cfg.json');
+
+const cfg = require('../cfg/cfg');
 const fs = require('fs');
 const path = require('path');
 const axios = require('axios');
 
-const url = `https://api.steampowered.com/IGameServersService/GetServerList/v1/?key=${keys.steamTOKEN}&format=json${cfg.serverListCFG.filters == '' ? '' : '&filter=' + cfg.serverListCFG.filters}${cfg.serverListCFG.limit == '' ? '' : '&limit=' + cfg.serverListCFG.limit}`;
+const url = `https://api.steampowered.com/IGameServersService/GetServerList/v1/?key=${cfg.steam.apikey}&format=json${cfg.steam.serverListCFG.filters == '' ? '' : '&filter=' + cfg.steam.serverListCFG.filters}${cfg.steam.serverListCFG.limit == '' ? '' : '&limit=' + cfg.steam.serverListCFG.limit}`;
 
 const pathDB = path.resolve(__dirname, '..', 'db');
 const fileDB = 'serverList.json';
@@ -75,7 +75,7 @@ function parseServer(server) {
 
 function filterServerList(servers) {
     servers = checkObject('o', servers)
-    const filter = new RegExp(cfg.serverListCFG.reFilters, 'gim');
+    const filter = new RegExp(cfg.steam.serverListCFG.reFilters, 'gim');
     const serversFiltered = servers.filter(server => filter.test(server.name));
     const serverCount = serversFiltered.length;
     const serverList = serversFiltered.map(parseServer);

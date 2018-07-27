@@ -1,7 +1,7 @@
 const User = require('../models/UserModel');
 const https = require('https');
 const fetch = https.request;
-const cfg = require('../cfg/keys.json');
+const cfg = require('../cfg/cfg');
 const axios = require('axios');
 
 function fetchAPI ( url, cb ) {
@@ -11,7 +11,7 @@ function fetchAPI ( url, cb ) {
 };
 
 function steamApiUserGameList( steamid ) {
-    return `https://api.steampowered.com/IPlayerService/GetOwnedGames/v0001/?key=${cfg.steamTOKEN}&steamid=${steamid}&format=json`;
+    return `https://api.steampowered.com/IPlayerService/GetOwnedGames/v0001/?key=${cfg.steam.apikey}&steamid=${steamid}&format=json`;
 };
 
 function initUserDB( userData ) {

@@ -1,5 +1,5 @@
 const serverUpdater = require('./src/serverBrowser.js').serverListUpdater;
-const serverUpdateTime = require('./cfg/cfg.json').serverListCFG.updateTime * (1000*60);
+const serverUpdateTime = require('./cfg/cfg').steam.serverListCFG.updateTime * (1000*60);
 
 serverUpdater();
 setInterval(serverUpdater, serverUpdateTime);
