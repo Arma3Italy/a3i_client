@@ -3,6 +3,7 @@ import Header from '../Header';
 import Footer from '../Footer';
 import ServerChangLogs from '../Cards';
 import ServerInfoTable from '../Table';
+import ServerSocialLinks from '../Social';
 
 import { Line } from 'react-chartjs-2';
 
@@ -110,19 +111,16 @@ class ServerOverview extends Component {
                             ]} />
                             
 
-                            <div className="links col-lg-4 my-3">
-                                <h3>Links</h3>
-                                <div className="content">
-                                    <a href="#" className="btn btn-secondary m-2"> TeamSpeak3 </a>
-                                    <a href="#" className="btn btn-secondary m-2"> Discord </a>
-                                    <a href="#" className="btn btn-secondary m-2"> Forum </a>
-                                    <a href="#" className="btn btn-secondary m-2"> Facebook </a>
-                                    <a href="#" className="btn btn-secondary m-2"> YouTube </a>
-                                    <a href="#" className="btn btn-secondary m-2"> Twitch </a>
-                                    <a href="#" className="btn btn-secondary m-2"> Sito </a>
-                                    <a href="#" className="btn btn-secondary m-2"> Steam </a>
-                                </div>
-                            </div>
+                            <ServerSocialLinks title='Social' data={[
+                                { name: 'teamspeak', icon: 'fab fa-teamspeak', link: 'https://www.teamspeak.com/en/' },
+                                { name: 'discord', icon: 'fab fa-discord', link: 'https://discordapp.com/' },
+                                { name: 'facebook', icon: 'fab fa-facebook', link: 'https://www.facebook.com/' },
+                                { name: 'youtube', icon: 'fab fa-youtube', link: 'https://www.youtube.com/?gl=IT&hl=it' },
+                                { name: 'twitch', icon: 'fab fa-twitch', link: 'https://www.twitch.tv/directory/following' },
+                                { name: 'steam', icon: 'fab fa-steam', link: 'http://steamcommunity.com/id/xedom/' },
+                                { name: 'site', icon: 'fas fa-globe-africa', link: 'http://xedom.altervista.org/' },
+                                { name: 'forum', icon: 'fas fa-users', link: 'https://forum.octafox.it/' }
+                            ]} />
                             
 
                             <div className="desc col-12 my-3">
