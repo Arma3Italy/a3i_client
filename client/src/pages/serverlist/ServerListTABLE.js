@@ -24,7 +24,7 @@ class ServerListTABLE extends Component {
                                     </div>
                         {/* NAME */}<div className="col-12 col-lg-11 text-wrap">
                                         {this.serverStatusChecker(i)} 
-                                        <a href={`/server/${i.addr}`} title={i.name}>
+                                        <a href={`/server/${i.addr.split(':')[0]}:${i.gameport}`} title={i.name}>
                                             {' '}<span className="badge badge-primary">
                                                 {i.gametype === undefined ? 'NONE' : i.gametype}
                                             </span> 

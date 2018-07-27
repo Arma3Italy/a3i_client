@@ -17,7 +17,7 @@ class ServerListBUTTON extends Component {
         const sl = servers.map(i => (
             <div className="col-12 col-md-6 col-lg-4" key={String(i.addr)}>
                 <div className="card serverBlock mb-4 bg-dark">
-                    <a rel="noopener noreferrer" href={`/server/${i.addr}`}><img src={i.img} alt="imgServerBanner" className="card-img-top" /></a>
+                    <a rel="noopener noreferrer" href={`/server/${i.addr.split(':')[0]}:${i.gameport}`}><img src={i.img} alt="imgServerBanner" className="card-img-top" /></a>
                     <div className="card-body">
                         <h5 className="card-title">{this.serverStatusChecker(i)} <span className="badge badge-warning">{i.gametype === undefined ? 'NONE' : i.gametype}</span>  {i.name} </h5>
                         <p className="m-0 mappa">Mappa: <span className="text-warning"> {i.map} </span></p>
