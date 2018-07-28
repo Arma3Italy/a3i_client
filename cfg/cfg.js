@@ -1,6 +1,11 @@
 const path = require('path');
 
 module.exports = {
+    serverApp: {
+        protocol: 'http://',
+        host: 'localhost',
+        port: 8080
+    },
     steam: {
         apikey: 'FD144A6CC13154901CE1AC0F9111BAD1',
         serverListCFG: {
@@ -18,6 +23,8 @@ module.exports = {
     },
     session: {
         secret: 'sessionKeyxxxSicret'
+    },
+    jwt: {
+        secret: '5DBFkDUowY6hZZc2LZxjsij2w'
     }
 };
-
