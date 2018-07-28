@@ -13,11 +13,11 @@ class Header extends Component {
     
                     <div className="collapse navbar-collapse" id="navbarTogglerDemo02">
                         <ul className="navbar-nav mr-auto mt-2 mt-lg-0">
-                            <li className="nav-item"> <a className="nav-link"  rel="noopener noreferrer" href="/">Home</a> </li>
-                            <li className="nav-item"> <a className="nav-link"  rel="noopener noreferrer" href="https://steamcommunity.com/groups/A3ITA" target="_blank">Steam Group</a> </li>
-                            <li className="nav-item"> <a className="nav-link"  rel="noopener noreferrer" href="https://discord.gg/R4d5HBB" target="_blank">Discord</a> </li>
-                            <li className="nav-item"> <a className="nav-link"  rel="noopener noreferrer" href="/serverlist">Server List</a> </li>
-                            <li className="nav-item"> <a className="nav-link"  rel="noopener noreferrer" href="/login">LOGIN</a> </li>
+                            <li className="nav-item"> <a className="nav-link" rel="noopener noreferrer" href="/">Home</a> </li>
+                            <li className="nav-item"> <a className="nav-link" rel="noopener noreferrer" href="https://steamcommunity.com/groups/A3ITA" target="_blank">Steam Group</a> </li>
+                            <li className="nav-item"> <a className="nav-link" rel="noopener noreferrer" href="https://discord.gg/R4d5HBB" target="_blank">Discord</a> </li>
+                            <li className="nav-item"> <a className="nav-link" rel="noopener noreferrer" href="/serverlist">Server List</a> </li>
+                            <li className="nav-item"> <a className="nav-link" rel="noopener noreferrer" href="http://localhost:8080/api/login/http_localhost_3000_profile">LOGIN</a> </li>
                         </ul>
                     </div>
                 </nav>
