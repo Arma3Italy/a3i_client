@@ -1,8 +1,8 @@
 module.exports = function () {
+    const keys = require('../cfg/cfg');
     const express = require('express');
     const app = express();
-    const port = 8888 || process.env.PORT;
-    const keys = require('../cfg/cfg');
+    const port = process.env.PORT || keys.serverApp.port;
 
     // Connecction to DB
     const mongoose = require('mongoose');
@@ -18,12 +18,9 @@ module.exports = function () {
         res.send('index');
     });
 
-    app.get('/session', (req, res) => {
-        res.send(req.session);
-    });
-
     // Routs
-    app.use('/api/serverList', require('../api/serverList'));
+    app.use('/api/serverlist', require('../api/serverlist'));
+    app.use('/api/login', require('../api/login'));
 
     // Start server
     app.listen(port, () => console.log(`-> Server started on port: ${port}`));
