@@ -3,11 +3,11 @@ const Schema = mongoose.Schema;
 
 // Schema
 const UserSchema = new Schema({
-    user: {
+    steamid: {
         type: String,
         require: true
     },
-    steamid: {
+    name: {
         type: String,
         require: true
     },
@@ -15,17 +15,11 @@ const UserSchema = new Schema({
         type: String,
         require: true
     },
-    email: {
+    primaryclanid: {
         type: String,
-        require: false,
-        default: ""
+        require: false
     },
-    servers: {
-        type: Array,
-        require: false,
-        default: []
-    },
-    hasArma: {
+    arma: {
         type: Boolean,
         require: false,
         default: false
