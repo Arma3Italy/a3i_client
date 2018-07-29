@@ -136,4 +136,5 @@ function serverListUpdater() {
 
 serverListUpdater();
 
+setInterval(serverListUpdater, 5*60*1000);
 module.exports = { serverListUpdater };

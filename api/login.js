@@ -45,8 +45,6 @@ route.get('/verify', (req, res, next) => {
             axios.get(`http://api.steampowered.com/IPlayerService/GetOwnedGames/v0001/?key=${keys.steam.apikey}&steamid=${steamToken}&format=json`)
                 .then(datag => {
                     newUser.arma = datag.data.response.games.filter(games => games.appid === keys.steam.armaid).length === 1 ? true : false;
-
-                    console.log(newUser)
                 });
 
         });

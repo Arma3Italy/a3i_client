@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import Header from '../Header';
 import Footer from '../Footer';
+import cfg from '../../cfg/cfg';
 
 class Profile extends Component {
     constructor(props) {
@@ -17,6 +18,12 @@ class Profile extends Component {
 
     componentDidMount() {
         // TODO: create post request to backend with token to get user data
+        // fetch(`${cfg.serverApp.port}${cfg.serverApp.host}:${cfg.serverApp.port}/api/login/user`,{
+        //     method: 'post',
+        //     body: this.state.token
+        // })
+        //     .then(data => data.json())
+        //     .then(console.log);
     };
 
     render() {
