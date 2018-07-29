@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import cfg from '../cfg/cfg';
 
 class Header extends Component {
     render() {
@@ -13,17 +14,17 @@ class Header extends Component {
     
                     <div className="collapse navbar-collapse" id="navbarTogglerDemo02">
                         <ul className="navbar-nav mr-auto mt-2 mt-lg-0">
-                            <li className="nav-item"> <a className="nav-link" rel="noopener noreferrer" href="/">Home</a> </li>
-                            <li className="nav-item"> <a className="nav-link" rel="noopener noreferrer" href="https://steamcommunity.com/groups/A3ITA" target="_blank">Steam Group</a> </li>
-                            <li className="nav-item"> <a className="nav-link" rel="noopener noreferrer" href="https://discord.gg/R4d5HBB" target="_blank">Discord</a> </li>
-                            <li className="nav-item"> <a className="nav-link" rel="noopener noreferrer" href="/serverlist">Server List</a> </li>
-                            <li className="nav-item"> <a className="nav-link" rel="noopener noreferrer" href="http://localhost:8080/api/login/http_localhost_3000_profile">LOGIN</a> </li>
+                            <li className="nav-item"> <a className="nav-link" rel="noopener noreferrer" href={`/${cfg.clientApp.routes.home.url}`}>{cfg.clientApp.routes.home.name}</a> </li>
+                            <li className="nav-item"> <a className="nav-link" rel="noopener noreferrer" href={`${cfg.clientApp.routes.steamgroup.url}`} target="_blank">{cfg.clientApp.routes.steamgroup.name}</a> </li>
+                            <li className="nav-item"> <a className="nav-link" rel="noopener noreferrer" href={`${cfg.clientApp.routes.discord.url}`} target="_blank">{cfg.clientApp.routes.discord.name}</a> </li>
+                            <li className="nav-item"> <a className="nav-link" rel="noopener noreferrer" href={`/${cfg.clientApp.routes.serverlist.url}`}>{cfg.clientApp.routes.serverlist.name}</a> </li>
+                            <li className="nav-item"> <a className="nav-link" rel="noopener noreferrer" href={`${cfg.serverApp.protocol}${cfg.serverApp.host}:${cfg.serverApp.port}/api/login/${cfg.clientApp.protocol.split('://')[0]}_${cfg.clientApp.host}_${cfg.clientApp.port}_${cfg.clientApp.routes.profile.url}`}>{cfg.clientApp.routes.profile.name}</a> </li>
                         </ul>
                     </div>
                 </nav>
             </header>
         );
-    }
+    };
 };
 
 export default Header;
