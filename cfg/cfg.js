@@ -4,7 +4,7 @@ module.exports = {
     serverApp: {
         protocol: 'http://',
         host: 'localhost',
-        port: 8080
+        port: 8888
     },
     steam: {
         apikey: 'FD144A6CC13154901CE1AC0F9111BAD1',
