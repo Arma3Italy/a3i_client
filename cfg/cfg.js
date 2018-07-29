@@ -8,6 +8,7 @@ module.exports = {
     },
     steam: {
         apikey: 'FD144A6CC13154901CE1AC0F9111BAD1',
+        armaid: 107410,
         serverListCFG: {
             filters: "\\appid\\107410\\name_match\\*",
             limit: "20000",
@@ -19,7 +20,7 @@ module.exports = {
         }
     },
     mongo: {
-        url: 'mongodb://admin:admin123@ds261660.mlab.com:61660/arma3italy'
+        url: 'mongodb://admin:admin123@ds257851.mlab.com:57851/arma3italy'
     },
     session: {
         secret: 'sessionKeyxxxSicret'
