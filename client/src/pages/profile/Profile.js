@@ -17,7 +17,6 @@ class Profile extends Component {
     };
 
     componentDidMount() {
-        // TODO: create post request to backend with token to get user data
         fetch(`${cfg.serverApp.protocol}${cfg.serverApp.host}:${cfg.serverApp.port}/api/login/user`, {
             method: 'POST',
             headers: {
