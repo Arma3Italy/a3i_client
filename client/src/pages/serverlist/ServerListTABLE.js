@@ -14,12 +14,17 @@ class ServerListTABLE extends Component {
         return (<i className={"fas fa-circle" + color}></i>);
     };
 
+    copyToClip(text) {
+        alert(text);
+        // TODO: copy ip to the clip board
+    };
+
     listItem() {
         const sl = this.state.servers.map(i => (
             <div className="ST_body row bg-light text-dark p-2 border-bottom" key={String(i.addr)}>
                 <div className="col-12 col-lg-6">
                     <div className="row">
-                        {/* RANK */}<div className="col-lg-1 d-none d-lg-block text-center">
+                        {/* RANK */}<div className="col-lg-1 d-none d-lg-block text-right">
                                         {i.rank[0].like.length}
                                     </div>
                         {/* NAME */}<div className="col-12 col-lg-11 text-wrap">
@@ -39,9 +44,7 @@ class ServerListTABLE extends Component {
                         <div className="col-12 col-lg-9">
                             <div className="row">
                                 {/* IP */}  <div className="col-12 col-lg-7">
-                                                <a className="text-warning">
-                                                    <i className="fas fa-copy"></i>
-                                                </a>
+                                                <i className="fas fa-copy text-warning" onClick={() => {this.copyToClip(`${' '+i.addr.split(':')[0]}:${i.gameport}`)}}></i>
                                                 {' '+i.addr.split(':')[0]}:{i.gameport}
                                             </div>
                                 {/* MAPPA */}<div className="col-lg-5 d-none d-lg-block text-center">
