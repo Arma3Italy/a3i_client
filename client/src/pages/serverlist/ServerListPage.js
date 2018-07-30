@@ -3,6 +3,7 @@ import Header from '../Header';
 import Footer from '../Footer';
 import ServerListTABLE from './ServerListTABLE';
 import ServerListBUTTON from './ServerListBUTTON';
+import Loader from "../Loader";
 import '../../bootstrap.min.css';
 
 class ServerListPage extends Component {
@@ -13,6 +14,7 @@ class ServerListPage extends Component {
         localStorage.setItem('A3I_overView', view);
 
         this.state = {
+            loader: 'full',
             serverOverView: view, //  table - button
             servers: { 
                 serverCount: 0,
@@ -45,12 +47,13 @@ class ServerListPage extends Component {
     componentDidMount() {
         fetch('http://localhost:8888/api/serverlist', {
             method: 'get'
-        }).then(res => res.json()).then(data => this.setState({ servers: data }));
+        }).then(res => res.json()).then(data => this.setState({ servers: data, loader: 'none' }));
     };
 
     render() {
         return (
             <div className="ServerListPage">
+                <Loader type={this.state.loader}/>
                 <Header />
                 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.0/css/all.css" integrity="sha384-lKuwvrZot6UHsBSfcMvOkWwlCMgc0TaWr+30HWe3a4ltaBwTZhyTEggF5tJv8tbt" crossOrigin="anonymous" />
                 <main className="container my-5">
