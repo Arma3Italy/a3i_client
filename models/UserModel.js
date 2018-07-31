@@ -24,6 +24,11 @@ const UserSchema = new Schema({
         require: false,
         default: false
     },
+    servers: {
+        type: Array,
+        required: false,
+        default: []
+    },
     registerDate: {
         type: Date,
         default: Date.now

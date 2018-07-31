@@ -44,6 +44,7 @@ route.get('/verify', (req, res, next) => {
                     newUser.name = datau.data.response.players[0].personaname;
                     newUser.avatar = datau.data.response.players[0].avatarfull;
                     newUser.primaryclanid = datau.data.response.players[0].primaryclanid;
+                    newUser.servers = [];
     
                     axios.get(`http://api.steampowered.com/IPlayerService/GetOwnedGames/v0001/?key=${keys.steam.apikey}&steamid=${steamToken}&format=json`)
                         .then(datag => {
