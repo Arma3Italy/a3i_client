@@ -18,9 +18,7 @@ class ServerListPage extends Component {
             serverOverView: view, //  table - button
             servers: { 
                 serverCount: 0,
-                serverList: [
-                    { name: '[ITA] LessLife | ts3: ts.lesslife.it', addr: '51.38.114.224:2302', img: 'img/bannerServers/SIGBanner.jpg', map: 'Altis', players: 47, max_players: 214, rank: [ { like: [ 2, 23, 4]} ]}
-                ],
+                serverList: [],
                 serverUpdate: 0
             },
             filter: ""

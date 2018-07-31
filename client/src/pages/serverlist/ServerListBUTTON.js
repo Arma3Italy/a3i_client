@@ -4,7 +4,7 @@ class ServerListBUTTON extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            servers: props.servers.serverList
+            servers: [{ name: '[ITA] LessLife | ts3: ts.lesslife.it', addr: '51.38.114.224:2302', img: 'img/bannerServers/SIGBanner.jpg', map: 'Altis', players: 47, max_players: 214, rank: [ { like: [ 2, 23, 4]} ] }]
         };
     };
 
