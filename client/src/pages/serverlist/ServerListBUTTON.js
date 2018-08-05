@@ -25,7 +25,7 @@ class ServerListBUTTON extends Component {
                     </div>
                     <div className="card-footer text-muted">
                         IP: <span className="text-warning"> {i.addr.split(':')[0]}:{i.gameport} </span>
-                            <a rel="noopener noreferrer" href="#" className="text-warning"> <i className="fas fa-copy"></i></a> 
+                            <a rel="noopener noreferrer" className="text-warning"> <i className="fas fa-copy"></i></a> 
                             <a rel="noopener noreferrer" className="float-right" href={`steam://run/107410//-connect=${i.addr.split(':')[0]}:${i.gameport}`}> <i className="fas fa-sign-in-alt"></i> </a>
                     </div>
                 </div>
