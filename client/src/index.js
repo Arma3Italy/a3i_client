@@ -6,6 +6,7 @@ import Profile from './pages/profile/Profile';
 import EditServer from './pages/server/EditServer';
 import HomePage from './pages/home/HomePage';
 import { BrowserRouter, Route } from 'react-router-dom';
+import './index.css';
 
 
 ReactDOM.render(
