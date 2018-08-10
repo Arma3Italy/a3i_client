@@ -1,0 +1,14 @@
+.xe_sup {
+    font-size: 15px;
+    margin-top: -8px;
+    color: #fa2;
+}
+
+.xe_sup a {
+    cursor: pointer;
+}
+
+.xe_sup a:hover {
+    opacity: .8;
+}
+
