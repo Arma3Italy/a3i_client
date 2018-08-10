@@ -4,6 +4,7 @@ import Footer from '../Footer';
 import ServerChangLogs from '../Cards';
 import ServerInfoTable from '../Table';
 import ServerSocialLinks from '../Social';
+import cfg from '../../cfg/cfg';
 
 import { Line } from 'react-chartjs-2';
 
@@ -35,7 +36,7 @@ class ServerOverview extends Component {
     };
 
     componentDidMount() {
-        fetch(`http://localhost:8888/api/serverlist/ip?address=${this.state.serverID.split(':')[0]}&port=${this.state.serverID.split(':')[1]}`)
+        fetch(`${cfg.serverApp.protocol}${cfg.serverApp.host}:${cfg.serverApp.port}/api/serverlist/ip?address=${this.state.serverID.split(':')[0]}&port=${this.state.serverID.split(':')[1]}`)
             .then(data => data.json())
             .then(server => this.setState({server}))
             .then(() => {
@@ -79,7 +80,7 @@ class ServerOverview extends Component {
                     <Header />
                     <main className="container my-3">
                         <img className="img-fluid rounded-top" src={'/'+server.img} alt={server.img}/>
-                        <h3 className="bg-dark text-light p-3 text-center rounded-bottom">{server.name}</h3>
+                        <h3 className="bg-dark text-light p-3 text-center rounded-bottom">{server.name} <sup className="xe_sup"><a href={`/edit/server?id=`+this.state.serverID}>Modifica</a></sup></h3>
 
                         <div className="row">
 
