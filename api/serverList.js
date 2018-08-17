@@ -54,4 +54,8 @@ route.get('/:id', (req, res) => {
     res.json(JSON.parse(serverList).serverList[req.params.id]);
 });
 
+route.post('/update', (req, res) => {
+    console.log(req.body);
+});
+
 module.exports = route;

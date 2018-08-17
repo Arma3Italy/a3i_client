@@ -46,7 +46,15 @@ class EditServer extends Component {
 
     handelSubmit(event) {
         event.preventDefault();
-        console.log(this.state.data)
+        console.log(this.state.data);
+        fetch(`${cfg.serverApp.protocol}${cfg.serverApp.host}:${cfg.serverApp.port}/api/serverlist/update`, {
+            method: 'POST',
+            headers: {
+              'Accept': 'application/json',
+              'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(this.state.data)
+        });
     };
 
     render() {
