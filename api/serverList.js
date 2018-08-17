@@ -41,10 +41,10 @@ route.get('/', (req, res) => {
 
 route.get('/ip', (req, res) => {
     const serverTrovati = JSON.parse(serverList).serverList.find(server => {
-        const ip = server.addr;
+        const ip = server.addr.split(":")[0];
         const port = server.gameport;
 
-        if ((req.query.address == ip && req.query.port == port) || (req.query.ip !== undefined && req.query.ip == server.addr ) ) return true;
+        if ((req.query.address == ip && req.query.port == port) || (req.query.ip !== undefined && req.query.ip == ip ) ) return true;
     });
     res.json(serverTrovati)
 })
