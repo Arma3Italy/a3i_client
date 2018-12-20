@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import './ServerListTABLE.css'
+import './ServerListTABLE.css';
+import SpliTex from '../../util/SpliTex';
 
 class ServerListTABLE extends Component {
     constructor(props) {
@@ -40,10 +41,10 @@ class ServerListTABLE extends Component {
                             {/* NAME */}<div className="col-12 col-lg-11 text-wrap">
                                             {this.serverStatusChecker(i)} 
                                             <a href={`/server/${i.addr.split(':')[0]}:${i.gameport}`} title={i.name}>
-                                                {' '}<span className="badge badge-primary">
+                                                <span className="badge badge-primary">
                                                     {i.gametype === undefined ? 'NONE' : i.gametype}
                                                 </span> 
-                                                { window.innerWidth < 400 ? (i.name.length > 20 ? ' '+i.name.substring(0,25)+' ...' : ' '+i.name) : (i.name.length > 30 ? ' '+i.name.substring(0,35)+' ...' : ' '+i.name) }
+                                                {' '+ SpliTex(i.name,20,30)}
                                             </a>
                                         </div>
                         </div>
@@ -58,7 +59,7 @@ class ServerListTABLE extends Component {
                                                     {' '+i.addr.split(':')[0]}:{i.gameport}
                                                 </div>
                                     {/* MAPPA */}<div className="col-lg-5 d-none d-lg-block text-center">
-                                                    {i.map}
+                                                    {SpliTex(i.map,9,9)}
                                                 </div>
                                 </div>
                             </div>

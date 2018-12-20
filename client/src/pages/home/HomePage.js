@@ -33,7 +33,6 @@ class HomePage extends Component {
                     <a className="btnLinks" rel="noopener noreferrer" href="https://steamcommunity.com/groups/A3ITA" target="_blank" title="Steam Group"><i className="fab fa-steam"></i></a>
                     <a className="btnLinks" rel="noopener noreferrer" href="https://discord.gg/R4d5HBB" target="_blank" title="Discord"><i className="fab fa-discord"></i></a>
                     <a className="btnLinks" rel="noopener noreferrer" href="/serverlist" title="Server List"><i className="fas fa-server"></i></a>
-                    <a className="btnLinks" rel="noopener noreferrer" href="/" title="Infistar Bans"><i className="fas fa-user-secret"></i></a>
                     <a className="btnLinks" rel="noopener noreferrer" href="/login" title="Login"><i className="fas fa-user-circle"></i></a>
                 </div>
 
