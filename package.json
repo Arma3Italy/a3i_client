@@ -1,6 +1,6 @@
 {
   "name": "arma3italyweb",
-  "version": "1.0.0",
+  "version": "2.0.0",
   "description": "Sito per la community Arma3Italy",
   "main": "index.js",
   "scripts": {
