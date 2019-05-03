@@ -1,8 +1,18 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import App from './App';
+import './index.scss';
 // import * as serviceWorker from './serviceWorker';
+import { BrowserRouter, Route } from 'react-router-dom';
 
-ReactDOM.render(<App />, document.getElementById('root'));
+import HomePage from './components/Home/Home';
+
+ReactDOM.render(
+    <BrowserRouter>
+        <React.Fragment>
+            <Route exact path="/" component={HomePage} />
+        </React.Fragment>
+    </BrowserRouter>,
+    document.getElementById('root')
+);
 
 // serviceWorker.register();
