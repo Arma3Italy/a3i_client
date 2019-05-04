@@ -36,12 +36,8 @@
                 letter-spacing: .1em;
                 font-size: 3.5em;
             }
-            hr {
-                margin: .3em 0;
-            }
-            p {
-                letter-spacing: .8em;
-            }
+            hr { margin: .3em 0; }
+            p { letter-spacing: .8em; }
         }
 
         .social {
@@ -51,6 +47,8 @@
             justify-content: space-evenly;
 
             margin-top: 2em;
+
+            a:hover > svg { animation: xrota .5s forwards; }
         }
     }
 }
