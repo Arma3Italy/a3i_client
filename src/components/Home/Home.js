@@ -15,10 +15,10 @@ function Home() {
           <p>Aiutiamoci a vicenda</p>
         </div>
         <div className="social">
-          <a className="btn btn-dark btn-box round" href="#1"><FontAwesomeIcon icon={['fab', 'discord']} /> <span className="none">Discord</span></a>
-          <a className="btn btn-dark btn-box round" href="#2"><FontAwesomeIcon icon="server" /> <span className="none">Servers</span></a>
-          <a className="btn btn-dark btn-box round" href="#3"><FontAwesomeIcon icon={['fab', 'steam']} /> <span className="none">Workshop</span></a>
-          <a className="btn btn-dark btn-box round" href="#4"><FontAwesomeIcon icon="user" /> <span className="none">Login</span></a>
+          <a className="btn btn-dark circle round" href="#1"><FontAwesomeIcon size="lg" icon={['fab', 'discord']} /> <span className="none">Discord</span></a>
+          <a className="btn btn-dark circle round" href="#2"><FontAwesomeIcon size="lg" icon="server" /> <span className="none">Servers</span></a>
+          <a className="btn btn-dark circle round" href="#3"><FontAwesomeIcon size="lg" icon={['fab', 'steam']} /> <span className="none">Workshop</span></a>
+          <a className="btn btn-dark circle round" href="#4"><FontAwesomeIcon size="lg" icon="user" /> <span className="none">Login</span></a>
         </div>
       </div>
     </div>
