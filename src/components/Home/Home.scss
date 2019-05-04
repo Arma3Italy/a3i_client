@@ -48,7 +48,20 @@
 
             margin-top: 2em;
 
-            a:hover > svg { animation: xrota .5s forwards; }
+            a {
+                svg {
+                    transition: color 1s;
+                    transition: transform .3s;
+                }
+
+                &:hover {
+
+                    & > svg {
+                        transform: scale(1.5);
+                        color: $xw-col;
+                    }
+                }
+            }
         }
     }
     .foot {
