@@ -15,10 +15,10 @@ function Home() {
           <p>Aiutiamoci a vicenda</p>
         </div>
         <div className="social">
-          <a className="btn btn-dark btn-box round" href="#1"><FontAwesomeIcon icon="discord" /> Discord</a>
-          <a className="btn btn-dark btn-box round" href="#2"><FontAwesomeIcon icon="server" /> Servers</a>
-          <a className="btn btn-dark btn-box round" href="#3"><FontAwesomeIcon icon="steam" /> Workshop</a>
-          <a className="btn btn-dark btn-box round" href="#4"><FontAwesomeIcon icon="user" /> Login</a>
+          <a className="btn btn-dark btn-box round" href="#1"><FontAwesomeIcon icon="discord" /> <span className="none">Discord</span></a>
+          <a className="btn btn-dark btn-box round" href="#2"><FontAwesomeIcon icon="server" /> <span className="none">Servers</span></a>
+          <a className="btn btn-dark btn-box round" href="#3"><FontAwesomeIcon icon="steam" /> <span className="none">Workshop</span></a>
+          <a className="btn btn-dark btn-box round" href="#4"><FontAwesomeIcon icon="user" /> <span className="none">Login</span></a>
         </div>
       </div>
     </div>
