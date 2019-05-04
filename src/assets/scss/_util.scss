@@ -31,6 +31,7 @@
     @include set-bg($pri-col);
     margin: 1em;
     cursor: pointer;
+    text-align: center;
 
     &:hover {
         @include set-bg(lighten($pri-col, 5%))
@@ -46,8 +47,9 @@
     &-box {
         width: 3em;
         height: 3em;
-        padding: 0;
+        padding: .9em 0;
         margin: 0;
+        justify-self: center;
     }
 }
 
