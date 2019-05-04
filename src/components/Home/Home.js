@@ -1,7 +1,7 @@
 import React from 'react';
 import './Home.scss';
 
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 const Home = () => (
   <div className="Home">
@@ -15,7 +15,7 @@ const Home = () => (
       </div>
       <div className="social">
         <a className="btn btn-dark circle round" href="https://discord.gg/R4d5HBB" target="_blank" rel="noopener noreferrer"><FontAwesomeIcon size="lg" icon={['fab', 'discord']} /> <span className="none">Discord</span></a>
-        <a className="btn btn-dark circle round" href="#2"><FontAwesomeIcon size="lg" icon="server" /> <span className="none">Servers</span></a>
+        <a className="btn btn-dark circle round" href="/servers"><FontAwesomeIcon size="lg" icon="server" /> <span className="none">Servers</span></a>
         <a className="btn btn-dark circle round" href="https://steamcommunity.com/groups/A3ITA" target="_blank" rel="noopener noreferrer"><FontAwesomeIcon size="lg" icon={['fab', 'steam']} /> <span className="none">Workshop</span></a>
         <a className="btn btn-dark circle round" href="#4"><FontAwesomeIcon size="lg" icon="user" /> <span className="none">Login</span></a>
       </div>
