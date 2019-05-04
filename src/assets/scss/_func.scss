@@ -1,0 +1,14 @@
+@import './defaults';
+
+@function set-txt($col) {
+    @if(lightness($col) > 50) {
+        @return $dark-col;
+    } @else {
+        @return $light-col;
+    }
+}
+
+@mixin set-bg($col) {
+    background-color: $col;
+    color: set-txt($col);
+}

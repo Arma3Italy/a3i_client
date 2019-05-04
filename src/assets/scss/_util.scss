@@ -1,0 +1,56 @@
+.bg {
+    &-pri {
+        @include set-bg($pri-col);
+    }
+    &-sec {
+        @include set-bg($sec-col);
+    }
+    &-dark {
+        @include set-bg($dark-col);
+    }
+    &-light {
+        @include set-bg($light-col);
+    }
+    &-err {
+        @include set-bg($err-col);
+    }
+    &-suc {
+        @include set-bg($suc-col);
+    }
+    &-war {
+        @include set-bg($war-col);
+    }
+    &-link {
+        @include set-bg($link-col);
+    }
+}
+
+.btn {
+    display: inline-block;
+    padding: .6em 2em;
+    @include set-bg($pri-col);
+    margin: 1em;
+    cursor: pointer;
+
+    &:hover {
+        @include set-bg(lighten($pri-col, 5%))
+    }
+
+    &-dark {
+        @include set-bg($dark-col);
+        &:hover {
+            @include set-bg(lighten($dark-col, 5%))
+        }
+    }
+
+    &-box {
+        width: 3em;
+        height: 3em;
+        padding: 0;
+        margin: 0;
+    }
+}
+
+.round {
+    border-radius: 100%;
+}
