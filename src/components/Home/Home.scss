@@ -51,4 +51,16 @@
             a:hover > svg { animation: xrota .5s forwards; }
         }
     }
+    .foot {
+        position: absolute;
+        left: 0;
+        bottom: 0;
+
+        width: 100%;
+        text-align: center;
+        padding: .5em 0;
+
+        color: $light-col;
+        font-size: .8em;
+    }
 }

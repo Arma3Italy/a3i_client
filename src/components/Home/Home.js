@@ -21,6 +21,9 @@ function Home() {
           <a className="btn btn-dark circle round" href="#4"><FontAwesomeIcon size="lg" icon="user" /> <span className="none">Login</span></a>
         </div>
       </div>
+      <div className="foot">
+        <p>for Arma3Italy by <a href="https://github.com/xedom">XEDOM</a> with <span role="img" aria-label="heart">❤️</span></p>
+      </div>
     </div>
   );
 }
