@@ -17,7 +17,7 @@ ReactDOM.render(
     <BrowserRouter>
         <React.Fragment>
             <Route exact path="/" component={HomePage} />
-            <Route exact path="/servers" component={ServerPage} />
+            <Route exact path="/server" component={ServerPage} />
         </React.Fragment>
     </BrowserRouter>,
     document.getElementById('root')
