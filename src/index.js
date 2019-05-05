@@ -9,7 +9,7 @@ import { fas } from '@fortawesome/free-solid-svg-icons';
 import { fab } from '@fortawesome/free-brands-svg-icons';
 
 import HomePage from './components/Home/Home';
-import ServersPage from './components/Servers/Servers';
+import ServerPage from './components/Server/Server';
 
 library.add(fas, fab)
 
@@ -17,7 +17,7 @@ ReactDOM.render(
     <BrowserRouter>
         <React.Fragment>
             <Route exact path="/" component={HomePage} />
-            <Route exact path="/servers" component={ServersPage} />
+            <Route exact path="/servers" component={ServerPage} />
         </React.Fragment>
     </BrowserRouter>,
     document.getElementById('root')

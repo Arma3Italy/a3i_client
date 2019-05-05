@@ -1,5 +1,5 @@
 import React from 'react';
-import './Servers.scss';
+import './Server.scss';
 
 const Servers = () => (
   <div className="Servers">
