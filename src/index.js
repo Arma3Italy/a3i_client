@@ -8,8 +8,8 @@ import { library } from '@fortawesome/fontawesome-svg-core';
 import { fas } from '@fortawesome/free-solid-svg-icons';
 import { fab } from '@fortawesome/free-brands-svg-icons';
 
-import HomePage from './components/Home/Home';
-import ServerPage from './components/Server/Server';
+import HomePage from './pages/Home/Home';
+import ServerPage from './pages/Server/Server';
 
 library.add(fas, fab)
 
