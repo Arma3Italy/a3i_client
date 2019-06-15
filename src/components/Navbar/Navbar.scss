@@ -1,0 +1,33 @@
+.Navbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+
+    background: #222;
+    padding: .5em;
+
+    font-size: 20px;
+
+    a {
+        color: #eee;
+        transition: color .2s;
+
+        &:hover {
+            color: #3498DB;
+        }
+    }
+
+    h2#logo {
+        // padding: 1em;
+    }
+
+    ul#links {
+        
+        li {
+            display: inline-block;
+            padding: 0 1em;
+        }
+    }
+
+    a#login {}
+}
