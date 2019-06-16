@@ -1,3 +1,41 @@
+@import '../../assets/scss/defaults';
+@import '../../assets/scss/func';
+@import '../../assets/scss/util';
+
 .Servers {
     
+    width: 100vw;
+    height: 100vh;
+
+    position: relative;
+
+    background-image: url('../../assets/wallpapers/background2.jpg');
+    background-position: center;
+    background-size: cover;
+    z-index: 0;
+
+    &-hover {
+        z-index: -1;
+        width: 100%;
+        height: 100%;
+
+        position: absolute;
+
+        background-color: rgba($color: #000000, $alpha: .6);
+    }
+
+    &-content {
+        z-index: 100;
+
+        max-width: 1000px;
+        margin: 0 auto;
+
+        h2.title {
+            text-align: center;
+    
+            margin: .5em 0 .2em;
+            font-size: 5em;
+        }
+    }
+
 }
