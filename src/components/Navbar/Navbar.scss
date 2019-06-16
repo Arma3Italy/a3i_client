@@ -1,19 +1,23 @@
+@import '../../assets/scss/defaults';
+@import '../../assets/scss/func';
+@import '../../assets/scss/util';
+
 .Navbar {
     display: flex;
     align-items: center;
     justify-content: space-around;
 
-    background: #222;
+    background: $dark-col;
     padding: .5em;
 
     font-size: 20px;
 
     a {
-        color: #eee;
+        color: $xw-col;
         transition: color .2s;
 
         &:hover {
-            color: #3498DB;
+            color: $link-col;
         }
     }
 
