@@ -10,6 +10,7 @@ import { fab } from '@fortawesome/free-brands-svg-icons';
 
 import HomePage from './pages/Home/Home';
 import ServerPage from './pages/Server/Server';
+import UserPage from './pages/User/User';
 
 library.add(fas, fab)
 
@@ -18,6 +19,7 @@ ReactDOM.render(
         <React.Fragment>
             <Route exact path="/" component={HomePage} />
             <Route exact path="/server" component={ServerPage} />
+            <Route exact path="/user" component={UserPage} />
         </React.Fragment>
     </BrowserRouter>,
     document.getElementById('root')
