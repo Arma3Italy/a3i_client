@@ -4,7 +4,6 @@ import logo from '../../assets/wallpapers/logo.png';
 
 const Navbar = () => (
   <div className="Navbar">
-    {/* <h2 id="logo"><a href="#arma3italy">A3I</a></h2> */}
     <h2 id="logo"><a href="#arma3italy"> <img src={logo} alt=""/> </a></h2>
     <ul id="links">
         <li><a href="/">Home</a></li>
