@@ -1,8 +1,28 @@
 .Table {
     width: 100%;
     height: 500px;
+    padding: .5em;
 
-    background: #a33;
+    // background: #a33;
 
-    display: grid;
+    .head, .body {
+        display: grid;
+        grid-template-columns: 1fr 5fr 2fr 2fr 1fr ;
+        padding: .5em 1em;
+        text-align: center;
+    }
+
+    .head {
+        // background: #3a3;
+        border-radius: 1em;
+
+    }
+
+    .body {
+        margin: .5em 0;
+        background: #0000007e;
+        // background: #33a;
+        // border-bottom: #ddd .05em solid;
+        border-radius: 1em;
+    }
 }

@@ -9,7 +9,7 @@ const Row = (props) => {
 const Table = (props) => {
 
   return (<div className="Table">
-    <Row key="99" type="head" obj={props.header} />
+    <Row type="head" obj={props.header} />
     {props.body.map(server => (<Row key={server.id} type="body" obj={[server.rank, server.name, server.players, server.modalita, server.join]} />))}
   </div>);
 };
