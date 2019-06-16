@@ -5,8 +5,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 const Home = () => (
   <div className="Home">
-    <div className="Home-hover">
-    </div>
+    <div className="Home-hover"></div>
     <div className="Home-content">
       <div className="head">
         <h1>Arma 3 Italy</h1>
