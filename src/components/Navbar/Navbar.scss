@@ -13,11 +13,18 @@
     font-size: 20px;
 
     a {
+        display: flex;
+        align-items: center;
+
         color: $xw-col;
         transition: color .2s;
 
         &:hover {
             color: $link-col;
+        }
+
+        img {
+            width: 2em;
         }
     }
 
