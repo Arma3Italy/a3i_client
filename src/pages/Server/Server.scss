@@ -21,13 +21,13 @@
 
         position: absolute;
 
-        background-color: rgba($color: #000000, $alpha: .6);
+        background-color: $dark-alpha-strong-col;
     }
 
     &-content {
         z-index: 1;
 
-        max-width: 980px;
+        max-width: $site-width;
         margin: 0 auto;
 
         h2.title {
