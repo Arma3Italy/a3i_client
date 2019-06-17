@@ -1,0 +1,21 @@
+@import '../../assets/scss/defaults';
+@import '../../assets/scss/func';
+@import '../../assets/scss/util';
+
+.Labels {
+    background: $dark-alpha-light-col;
+    padding: .5em 1em;
+    margin: .5em 0;
+    border-radius: $rounded;
+
+    hr {
+        margin: .3em 0 0;
+    }
+
+    .info {
+        padding: .5em 0;
+
+        display: flex;
+        justify-content: space-between;
+    }
+}
