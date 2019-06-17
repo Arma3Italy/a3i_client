@@ -14,7 +14,12 @@
     align-items: center;
     justify-content: center;
 
-    background: $dark-alpha-strong-col;
+    background: $dark-alpha-light-col;
+    transition: background .2s ease-in-out;
+
+    &:hover {
+        background: $dark-alpha-strong-col;
+    }
 
     border-radius: $rounded;
 
