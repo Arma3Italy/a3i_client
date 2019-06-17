@@ -3,7 +3,6 @@
 @import '../../assets/scss/util';
 
 .User {
-    
     width: 100vw;
     height: 100vh;
 
@@ -29,6 +28,9 @@
 
         max-width: $site-width;
         margin: 1em auto;
+
+        display: grid;
+        grid-template-columns: 2fr 5fr;
     }
 
 }
