@@ -3,5 +3,35 @@
 @import '../../assets/scss/util';
 
 .Usercard {
+    width: 15em;
+    height: 20em;
 
+    overflow: hidden;
+    position: relative;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    background: $dark-alpha-strong-col;
+
+    border-radius: .3em;
+
+    img {
+        width: 140%;
+        position: absolute;
+        display: block;
+
+        z-index: -1;
+    }
+
+    h2 {
+        text-align: center;
+        font-size: 1.4em;
+    }
+
+    p {
+        font-size: .9em;
+    }
 }
