@@ -3,6 +3,7 @@ import './User.scss';
 import Navbar from '../../components/Navbar/Navbar.js';
 import Usercard from '../../components/Usercard/Usercard.js';
 import Labels from '../../components/Labels/Labels.js';
+import Btn from '../../components/Btn/Btn.js';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
@@ -22,7 +23,12 @@ const User = () => {
     <div className="User-content">
       <Usercard user={user} />
       <div className="serversOwned">
-        <h2>Owned servers</h2>
+        <div className="title">
+          <h2>Owned servers</h2>
+          <div className="btns">
+            <Btn name="Aggiungi" url="#aggiugi" />
+          </div>
+        </div>
         {serversowned.map(server => <Labels server={server} />)}
       </div>
     </div>

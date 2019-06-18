@@ -1,0 +1,17 @@
+@import '../../assets/scss/defaults';
+@import '../../assets/scss/func';
+@import '../../assets/scss/util';
+
+.Btn {
+    a {
+        padding: .5em 1em;
+        border-radius: 1em;
+
+        background: $xd-col;
+        color: $xw-col;
+
+        &:hover {
+            color: $light-col;
+        }
+    }
+}
