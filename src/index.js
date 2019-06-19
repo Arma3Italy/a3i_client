@@ -19,7 +19,7 @@ ReactDOM.render(
         <React.Fragment>
             <Route exact path="/" component={HomePage} />
             <Route exact path="/server" component={ServerPage} />
-            <Route exact path="/user" component={UserPage} />
+            <Route exact path="/user/:id" component={UserPage} />
         </React.Fragment>
     </BrowserRouter>,
     document.getElementById('root')
