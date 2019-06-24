@@ -8,7 +8,6 @@ import Btn from '../../components/Btn/Btn.js';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 class User extends React.Component {
-
   constructor({ match }) {
     super();
 
@@ -16,23 +15,22 @@ class User extends React.Component {
       sid: match.params.id,
       user: {}
     }
-    
   }
 
   componentDidMount() {
     fetch(`http://localhost:8801/user/${this.state.sid}`)
-        .then(data => data.json())
-        .then(user => {
-          console.log(user)
-          this.setState({ user:{
-            id: user.user.steamid, 
-            url: user.user.url, 
-            name: user.user.name, 
-            avatar: user.user.avatar, 
-            armaHours: 3522,
-          }})
-        })
-        .catch(() => { console.log('ERROR') });
+    .then(data => data.json())
+    .then(user => {
+      console.log(user)
+      this.setState({ user:{
+        id: user.user.steamid, 
+        url: user.user.url, 
+        name: user.user.name, 
+        avatar: user.user.avatar, 
+        armaHours: 3522,
+      }})
+    })
+    .catch((e) => { console.log(e) });
   };
 
 

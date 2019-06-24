@@ -11,7 +11,7 @@ const Navbar = () => (
         <li><a target="_black" href="https://steamcommunity.com/groups/A3ITA">Steam</a></li>
     </ul>
 
-    <a id="login" href="#login">Login</a>
+    <a id="login" href="http://localhost:8801/auth">Login</a>
   </div>
 );
 
